@@ -94,7 +94,7 @@ public class Programme
 	{
 		String output;
 		
-		output = "PROGRAMME DETAILS";
+		output = "********* P R O G R A M M E  D E T A I L S *********\n";
 		output += "\nCode                      : "+code;
 		output += "\nName                      : "+name;
 		output += "\nMaximum Number of Courses : "+maxCourses;
