@@ -62,6 +62,6 @@ public class Date
 	// Display Method
 	public void Display()
 	{
-		System.out.println("Date is : "+day+"/"+month+"/"+year); // 00/00/0000
+		System.out.println(day+"/"+month+"/"+year); // 00/00/0000
 	}	
 }
