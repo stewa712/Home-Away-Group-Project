@@ -1,72 +1,73 @@
+package records;
+
 public class Name {
 	
-	private String fname;
-	private String mname;
-	private String lname;
+	private String fName;
+	private String mName;
+	private String lName;
 	
 	//Default Constructor
 	public Name()
 	{
-		fname = "James";
-		mname = "Arnold";
-		lname = "Bond";
+		fName = "James";
+		mName = "Arnold";
+		lName = "Bond";
 	}
 	
 	//Primary Constructor
-	public Name ( String fname, String mname, String lname)
+	public Name ( String fName, String mName, String lName)
 	{
-		this.fname = fname;
-		this.mname = mname;
-		this.lname = lname;
+		this.fName = fName;
+		this.mName = mName;
+		this.lName = lName;
 	}
 	
 	//Copy Constructor
 	public Name (Name obj)
 	{
-		this.fname = obj.fname;
-		this.mname = obj.mname;
-		this.lname = obj.lname;
+		this.fName = obj.fName;
+		this.mName = obj.mName;
+		this.lName = obj.lName;
 	}
 	
 	// Getters and Setters
 	
-	public String GetFname ()
+	public String GetFName ()
 	{
-		return fname;
+		return fName;
 	}
 	
-	public void SetFName(String fname)
+	public void SetFName(String fName)
 	{
-		this.fname = fname;
+		this.fName = fName;
 	}
 	
 	public String GetMName()
 	{
-		return mname;
+		return mName;
 	}
 	
-	public void SetMName(String mname)
+	public void SetMName(String mName)
 	{
-		this.mname = mname;
+		this.mName = mName;
 	}
 	
 	public String GetLName()
 	{
-		return lname;
+		return lName;
 	}
 	
-	public void SetLName(String lname)
+	public void SetLName(String lName)
 	{
-		this.lname = lname;
+		this.lName = lName;
 	}
 	
 	public void Display()
 	{
-		System.out.println("First Nane: "+fname+" ");
-		System.out.println("Middle Name: "+mname+" ");
-		System.out.println("Last Name: "+lname+" ");
-		System.out.println(":       "+fname+" "+mname+", "+lname);
+		System.out.println("First Nane: "+fName+" ");
+		System.out.println("Middle Name: "+mName+" ");
+		System.out.println("Last Name: "+lName+" ");
+		System.out.println(":       "+fName+" "+mName+", "+lName);
 	}
 }
 
-}
