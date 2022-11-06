@@ -1,4 +1,4 @@
-package HomeAway;
+package records;
 
 //Creating Student class which is a child of the Administrator class
 
@@ -8,7 +8,8 @@ public class Student extends Administrator {
 	
 	private Address address;
 	private Date dateEnrolled;
-	private String enrollStatus;
+	private String progCode;
+	private int enrollStatus;
 	private Phone phoneNum;
 	
 	// Default Constructor
@@ -23,11 +24,12 @@ public class Student extends Administrator {
 	
 	// Primary Constructor
 	public Student(int id, Name name, String username, String password,Address address,
-			Date dateEnrolled,String enrollStatus, Phone phoneNum)
+			Date dateEnrolled, String progCode, int enrollStatus, Phone phoneNum)
 	{
 		super(id, name, username, password);
 		this.address = address;
 		this.dateEnrolled = dateEnrolled;
+		this.progCode = progCode;
 		this.enrollStatus = enrollStatus;
 		this.phoneNum = phoneNum;
 	}
@@ -38,6 +40,7 @@ public class Student extends Administrator {
 		super(stu.id, stu.name, stu.username, stu.password);
 		this.address = stu.address;
 		this.dateEnrolled = stu.dateEnrolled;
+		this.progCode = stu.progCode;
 		this.enrollStatus = stu.enrollStatus;
 		this.phoneNum = stu.phoneNum;
 	}
@@ -60,25 +63,39 @@ public class Student extends Administrator {
 		this.dateEnrolled = dateEnrolled;
 	}
 	
-	public String getEnrollStatus() {
+	public String getProgCode() {
+		return progCode;
+	}
+
+	public void setProgCode(String progCode) {
+		this.progCode = progCode;
+	}
+	
+	public int getEnrollStatus() {
 		return enrollStatus;
 	}
 
-	public void setEnrollStatus(String enrollStatus) {
+	public void setEnrollStatus(int enrollStatus) {
 		this.enrollStatus = enrollStatus;
 	}
 	
-	public Program viewProgramDetails() 
+	public Phone getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(Phone phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public Programme viewProgrammeDetails() 
 	{
 		String output;
 		
-		output = Program.toString();		
+		output = Programme.toString();		
 		
 		return output; 
 	}
 
-	
-	
 	
 	// Implementing the toString method
 	public String toString()
@@ -88,6 +105,7 @@ public class Student extends Administrator {
 		output = super.toString();
 		output += "\n                                              : "+address.toString();
 		output += "\n                                              : "+dateEnrolled.toString();
+		output += "\nProgramme Code                                : "+progCode;
 		output += "\nEnrollment Status                             : "+enrollStatus;
 		output += "\n                                              : "+phoneNum.toString();				
 		
