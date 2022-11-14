@@ -62,7 +62,7 @@ public class CourseRecords{
 			try {
 				FileReader input = new FileReader ("Course1.txt");
 				input.read(data);
-				System.out.println("Data Received From File");
+				System.out.println("Data Retrieved From File");
 				System.out.println(data);
 				input.close();
 			} catch (IOException e) {
