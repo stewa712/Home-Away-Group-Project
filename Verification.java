@@ -16,6 +16,7 @@ public class Verification {
 		protected String usrname;
 		protected String passwrd;
 		
+		
 		// Default Constructor
 		public Verification()
 		{
@@ -29,7 +30,7 @@ public class Verification {
 		{
 			this.usrname = username;
 			this.passwrd = password;
-			
+						
 		}
 		
 		// Copy Constructor
@@ -64,11 +65,6 @@ public class Verification {
 		
 			//Verification vfy = new Verification();
 			try {
-				Scanner in = new Scanner(System.in);
-				//blank out attributes
-				usrname = "";
-				passwrd = "";
-												
 				String un;
 				String pw;
 				Scanner fileInp = new Scanner(new File("staffusrpass.txt"));
@@ -79,11 +75,21 @@ public class Verification {
 				
 				if(user.equals(un)&& pass.equals(pw))
 			{
-				System.out.println("\nSuccess!");
-				break;
+				System.out.println("\nWelcome!");
+				
+		    		//Creating object of class Administrator
+					Administrator adm = new Administrator();
+					
+					//Calling newStaff method t
+					adm.newStaff();				
+				
+				
+				
 			}else {
 				continue;				
-			}//end if				
+			}//end if
+				
+			
 							
 			}//end while
 			fileInp.close();
@@ -96,6 +102,8 @@ public class Verification {
 			e.printStackTrace();
 			}
 		}
+		
+	
 	
 
 }//End class Verification

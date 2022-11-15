@@ -106,7 +106,7 @@ public class Administrator {
 		  while(CHOICE.charAt(0) != 'q')
 		     {
 		    	 System.out.print("\n\n");	
-		    	 System.out.print("\n----------- Menu -------------");	
+		    	 System.out.print("\n---------Staff  Menu -------------");	
 		    	 System.out.print("\n|  (C)reate A New Staff File |");
 		    	 System.out.print("\n|  (A)dd A Record            |");
 		    	 System.out.print("\n|  (D)isplay Record          |");
@@ -152,61 +152,96 @@ public class Administrator {
 		    		 break;
 		    		    		 
 		    	 case 'a':
-		    		 	System.out.println("Enter Staff ID: ");
-						int code = s.nextInt();
-												
-						System.out.println("Enter First Name: ");
-						String fname = s1.nextLine();
-						
-						System.out.println("Enter Middle Name: ");
-						String mname = s1.nextLine();
-						
-						System.out.println("Enter Last Name: ");
-						String lname = s1.nextLine();
-										
-						System.out.println("Enter Username: ");
-						String usrname = s1.nextLine();									
-													
-						System.out.println("Enter Password: ");
-						String password = s1.nextLine();
-						
-						
-		 			try {
-		 			FileWriter output = new FileWriter ("staff.txt",true);
-		 			output.write(code+ " ");
-		 			output.write("\n");
-		 			output.write(fname+ " ");
-		 			output.write("\n");
-		 			output.write(mname+ " ");
-		 			output.write("\n");
-		 			output.write(lname+" ");
-		 			output.write("\n");
-		 			output.write(usrname+" ");
-		 			output.write("\n");
-		 			output.write(password+" ");
-		 			System.out.println("\n\n");
-		 			System.out.println("Data Appended Successfully");	
-		 			output.close(); 
-		 			} catch (IOException e) {
-		 				System.out.println("File Append Error");	
-		 			} 
-		 			
-		 			try {
-			 			FileWriter output = new FileWriter ("staffusrpass.txt",true);
-			 			
-			 			output.write(usrname+" ");
-			 			output.write("\n");
-			 			output.write(password+" ");
-			 			output.write("\n");
-			 			
-			 			System.out.println("\n\n");
-			 			System.out.println("Data Appended Successfully");	
-			 			output.close(); 
-			 			} catch (IOException e) {
-			 				System.out.println("File Append Error");	
-			 			} 
-	 
-		    	 break; 
+		    		 
+		    		 
+		    			Scanner INPUT1 = new Scanner (System.in);		    				
+		    			String CHOICE1= " "; 
+		    			
+		    			while(CHOICE1.charAt(0) != 'q')
+		   		     {
+		   		    	 System.out.print("\n\n");	
+		   		    	 System.out.print("\n-----------------------------");	
+		   		    	 System.out.print("\n|  (C)ontinue                |");
+		   		    	 System.out.print("\n|  (Q)uit                    |");
+		   		    	 System.out.print("\n--------------------------\n");
+		   		     	 System.out.print("Please Enter your Choice: \n");
+		   		    	 
+		   		    	 CHOICE1 = INPUT1.nextLine();
+		   		    	 CHOICE1 = CHOICE1.toLowerCase(); 
+		   		    	 
+		   		    	 switch(CHOICE1.charAt(0))
+		   		    	 {
+		   		    	 case 'c':  	    		 
+		   		    		 
+		   		    		 		    			
+		   		    		    System.out.print("Staff Record File Access");
+		   		    		    System.out.print("\n\n");	
+		   		    		 	System.out.println("Enter Staff ID: ");
+		   						int code = s.nextInt();
+		   												
+		   						System.out.println("Enter First Name: ");
+		   						String fname = s1.nextLine();
+		   						
+		   						System.out.println("Enter Middle Name: ");
+		   						String mname = s1.nextLine();
+		   						
+		   						System.out.println("Enter Last Name: ");
+		   						String lname = s1.nextLine();
+		   										
+		   						System.out.println("Enter Username: ");
+		   						String usrname = s1.nextLine();									
+		   													
+		   						System.out.println("Enter Password: ");
+		   						String password = s1.nextLine();
+		   						
+		   						
+		   		 			try {
+		   		 			FileWriter output = new FileWriter ("staff.txt",true);
+		   		 			output.write(code+ " ");
+		   		 			output.write("\n");
+		   		 			output.write(fname+ " ");
+		   		 			output.write("\n");
+		   		 			output.write(mname+ " ");
+		   		 			output.write("\n");
+		   		 			output.write(lname+" ");
+		   		 			output.write("\n");
+		   		 			output.write(usrname+" ");
+		   		 			output.write("\n");
+		   		 			output.write(password+" ");
+		   		 			
+		   		 			//System.out.println("Data Appended Successfully");	
+		   		 			output.close(); 
+		   		 			} catch (IOException e) {
+		   		 				System.out.println("File Append Error");	
+		   		 			} 
+		   		 			
+		   		 			try {
+		   			 			FileWriter output = new FileWriter ("staffusrpass.txt",true);
+		   			 			
+		   			 			output.write(usrname+" ");
+		   			 			output.write("\n");
+		   			 			output.write(password+" ");
+		   			 			output.write("\n");
+		   			 			
+		   			 			System.out.println("\n\n");
+		   			 			//System.out.println("Data Appended Successfully");	
+		   			 			output.close(); 
+		   			 			} catch (IOException e) {
+		   			 				System.out.println("File Append Error");	
+		   			 			}   		    		    	 
+		   		    	 
+		   		    	 		  	 
+		   		    	 case 'q': break; 
+		   		    	 default :  System.out.print("\n\tInvald Input\n");
+		   		    	 }
+		   		    	 
+		   		     }//End while
+		    		System.out.println("\n\n");	
+		    		 
+		    		
+		    		break;
+		    		
+		    		    
 		    	 
 		    		    	 
 		    	 case 'd': 
@@ -244,7 +279,7 @@ public class Administrator {
 		String output;
 		
 		output  = "I.D                                            : "+id;
-		output +="\nFirst Name                                    : "+name.GetFname();
+		output +="\nFirst Name                                    : "+name.GetFName();
 		output +="\nMiddle Name                                   : "+name.GetMName();
 		output +="\nLast Name                                     : "+name.GetLName();
 		output +="\nUsername                                      : "+username;
