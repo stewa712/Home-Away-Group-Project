@@ -6,6 +6,7 @@ package records;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -78,8 +79,7 @@ public class Staff extends Administrator
 		this.dateEmployed = dateEmployed;
 	}
 	
-	Scanner s = new Scanner(System.in);
-	
+	// METHOD TO REGISTER STUDENTS
 	public void registerStudent()
 	{
 		Scanner s= new Scanner(System.in);
@@ -87,67 +87,65 @@ public class Staff extends Administrator
 		Scanner INPUT = new Scanner (System.in);
 			
 		String CHOICE= " ";   
-
-	      
-	    while(CHOICE.charAt(0) != 'q')
+  
+	    while(CHOICE.charAt(0) != 'b')
 	    {
-		    	 System.out.print("\n------STUDENT REGISTRATION------");	
-		    	 System.out.print("\n|  (C)reate A New Student File |");
-		    	 System.out.print("\n|  (A)dd A Record              |");
-		    	 System.out.print("\n|  (D)isplay Record            |");
-		    	 System.out.print("\n|  (Q)uit                      |");
-		    	 System.out.print("\n-------------------------------\n");
-		     	 System.out.print("Please Enter your Choice: ");
+	    	System.out.print("\n-------------- S T U D E N T  R E G I S T R A T I O N -------------");	
+		    System.out.print("\n|    (A)dd A Record                                               |");
+		    System.out.print("\n|    (D)isplay Records                                            |");
+		    System.out.print("\n|    (B)ack                                                       |");
+		    System.out.print("\n-------------------------------------------------------------------\n");
+		    System.out.print("Please Enter your Choice: ");
 		    	 
-		    	 CHOICE = INPUT.nextLine();
-		    	 CHOICE = CHOICE.toLowerCase(); 
-		    	 
-		    	 switch(CHOICE.charAt(0))
-		    	 {
-		    	 case 'c': 
-		    	
-		    		 //Creating the file 
-		    			File myFile = new File ("student.txt");
-		    			File myFile1 = new File ("studentlogin.txt");
-		    			
-		    			try {
-		    				if(myFile.createNewFile())
-		    				{
-		    					System.out.println("Student File Ceated Successfully");
-		    				}
-		    				else {
-		    					System.out.println("Student File Creation Error");
-		    				} 
-		    			} catch (IOException e) {
-		    				System.out.println("Student File Error");
-		    			}
-		    			
-		    			try {
-		    				if(myFile1.createNewFile())
-		    				{
-		    					System.out.println("Student Login File Ceated Successfully");
-		    				}
-		    				else {
-		    					System.out.println("Student Login File Creation Error");
-		    				} 
-		    			} catch (IOException e) {
-		    				System.out.println("Student Login File Error");
-		    			}
+		    CHOICE = INPUT.nextLine();
+		    CHOICE = CHOICE.toLowerCase(); //converts user input to lower case
+		    
+		    switch(CHOICE.charAt(0))
+		    {
+		    	// Add Student Record
+		    	case 'a':
+		    		Scanner INPUT1 = new Scanner (System.in);
+		    		String CHOICE1= "c";
 		    		 
-		    		 break;
-		    		    		 
-		    	 case 'a':
-		    		 Scanner INPUT1 = new Scanner (System.in);
-		    		 String CHOICE1= "c";
+		    		File myFile = new File ("student.txt");
+		    		File myFile1 = new File ("studentlogin.txt");
 		    		 
-		    		 do
-		    		 {
-		   		    	 switch(CHOICE1.charAt(0))
-		   		    	 {
-		   		    	 	case 'c':  	
-		   		    	 		System.out.println("\n-----ADDING STUDENT RECORD-----");  
-		   												
-		   						System.out.print("\nEnter First Name: ");
+		    		System.out.println("\n\n------------- A D D I N G  S T U D E N T  R E C O R D -------------"); 
+		    		 
+		    		try
+		    		{
+		    			if (!myFile.exists()) 
+		    			{
+		    				myFile.createNewFile(); //creates a student file if none exists
+		    				System.out.println("[Student File Created Successfully]");
+		    			}
+		    		}
+		    		catch (IOException e)
+		    		{
+		    			System.err.println("Student File Error");
+		    		}
+		    		 
+		    		try
+		    		{
+		    			if (!myFile1.exists())
+		    			{
+			    			 myFile1.createNewFile(); //creates a student login file if none exists
+			    			 System.out.println("[Student Login File Created Successfully]");
+		    			}
+		    		}
+		    		catch (IOException e)
+		    		{
+		    			System.err.println("Student Login File Error");
+		    		}
+		    		 
+		    		do
+		    		{
+		    			switch(CHOICE1.charAt(0))
+		    			{
+		    				// Continue
+		    				case 'c':
+		    					// Populating the student record via user input
+		    					System.out.print("\nEnter First Name: ");
 		   						String fName = s1.nextLine();
 		   						
 		   						System.out.print("\nEnter Middle Name: ");
@@ -170,11 +168,10 @@ public class Staff extends Administrator
 		   						System.out.print("Year: ");
 		   						int year = s.nextInt();
 		   						
-		   				        System.out.print("\nEnter Programme Code: ");
+		   						System.out.print("\nEnter Programme Code: ");
 		   				        String programmeCode = s1.nextLine();
-		   				        
-		   				        programmeCode = programmeCode.toUpperCase(); 
-		   				     
+		   				        programmeCode = programmeCode.toUpperCase(); //converts programme code entered to uppercase for aesthetical purposes
+		   						
 		   				        System.out.println("\nEnter Contact Number");
 		   				        System.out.print("Area Code: ");
 		   						int area = s.nextInt();
@@ -183,202 +180,216 @@ public class Staff extends Administrator
 		   						System.out.print("Line Number: ");
 		   						int line = s.nextInt();
 		   						
-		   				        int enrollStatus = 0;
+		   				        int enrollStatus = 0; //initialising enrollment status to zero
 		   				        
-		   						LocalDate currentdate = LocalDate.now();
-		   						int currentYear = currentdate.getYear();
+		   						LocalDate currentdate = LocalDate.now(); //obtaining the current date from the system clock in the default time-zone
+		   						int currentYear = currentdate.getYear(); //extracting the year 
 		   						
-		   						int record = 0;
-			   				    try (BufferedReader reader = new BufferedReader(new FileReader("student.txt"))) 
+		   						int sequence = 0; //initialising sequence as 0
+			   				    
+		   						// Auto-incrementing sequence
+		   						try (BufferedReader reader = new BufferedReader(new FileReader("student.txt"))) 
 			   				    {
 			   				      while (reader.readLine() != null) 
-			   				    	  record++;
+			   				    	  sequence++; 
 			   				    } 
 			   				    catch (IOException e) 
 			   				    {
 			   				          e.printStackTrace();
 			   				    }
-			   				      
-		   						String idNum = currentYear+programmeCode+record;
-		   				    		
-		   		 			try 
-		   		 			{
-			   		 			FileWriter output = new FileWriter ("student.txt",true);
+			   				    
+		   						// Concatenating current year, programme code and a sequence to generate ID number
+		   						String idNum = currentYear+programmeCode+sequence; 
+		   				    	
+		   						// Informing the user that the student has been registered
+			   		 			try 
+			   		 			{
+				   		 			FileWriter output = new FileWriter ("student.txt",true);
+				   		 			
+				   		 			output.write(idNum+"   "+fName+"   "+mName+"   "+lName+"   "+password+"   "+address+"   "+enrollStatus+"   "+day+"/"+month+"/"+year+"   "+programmeCode+"   ("+area+")"+prefix+"-"+line+"\n");
+				   		 			
+				   		 			System.out.println("\n*******************************************************************");
+				   		 			System.out.println("\n"+fName+" "+lName+" ("+idNum+") was Registered Successfully!");	
+				   		 			output.close(); 
+			   		 			} 
+			   		 			catch (IOException e) 
+			   		 			{
+			   		 				System.err.println("File Append Error");	
+			   		 			} 
 			   		 			
-			   		 			output.write(idNum+"   "+fName+"   "+mName+"   "+lName+"   "+password+"   "+address+"   "+enrollStatus+"   "+day+"/"+month+"/"+year+"   "+programmeCode+"   ("+area+")"+prefix+"-"+line+"\n");
-			   		 			
-			   		 			System.out.println("\n*******************************************************************************************");
-			   		 			System.out.println("\n"+fName+" "+lName+" ("+idNum+") was Registered Successfully!");	
-			   		 			output.close(); 
-		   		 			} 
-		   		 			catch (IOException e) 
-		   		 			{
-		   		 				System.out.println("File Append Error");	
-		   		 			} 
-		   		 			
-		   		 			try 
-		   		 			{
-		   			 			FileWriter output = new FileWriter ("studentlogin.txt",true);
-		   			 			
-		   			 			output.write(idNum+" ");
-		   			 			output.write("\n");
-		   			 			output.write(password+" ");
-		   			 			output.write("\n");
-
-		   			 
-		   			 			System.out.println("\nUsername: "+idNum+"\nPassword: "+password);
-		   			 			System.out.println("\n*******************************************************************************************");
-		   			 			output.close(); 
-		   			 		} 
-		   		 			catch (IOException e) 
-		   		 			{
-		   			 				System.out.println("File Append Error");	
-		   			 		} 
-		   		 			break;
-		   		    	   	 
-		   		    	 case 'q': 
-		   		    		 break; 
+			   		 			// Displaying student's login details
+			   		 			try 
+			   		 			{
+			   			 			FileWriter output = new FileWriter ("studentlogin.txt",true);
+			   			 			
+			   			 			output.write(idNum+" ");
+			   			 			output.write("\n");
+			   			 			output.write(password+" ");
+			   			 			output.write("\n");
+	
+			   			 
+			   			 			System.out.println("\nUsername: "+idNum+"\nPassword: "+password);
+			   			 			System.out.println("\n*******************************************************************");
+			   			 			output.close(); 
+			   			 		} 
+			   		 			catch (IOException e) 
+			   		 			{
+			   			 			System.err.println("File Append Error");	
+			   			 		} 
+			   		 			break;
+		   		    	   	
+			   		 		// Back
+		   		    	 	case 'b':
+		   		    	 		break; 
 		   		    		 
-		   		    	 default: 
-		   		    		 System.out.print("\n\tInvald Input\n");
+		   		    	 	default:
+		   		    	 		System.out.print("\n\tInvald Input\n");
 		   		    	 }
 		   		    	 
-		   		    	 System.out.print("\n-------------------------------");	
-		   		    	 System.out.print("\n|         (C)ontinue          |");
-		   		    	 System.out.print("\n|         (Q)uit              |");
-		   		    	 System.out.print("\n-------------------------------\n");
+		   		    	 System.out.print("\n-------------------------------------------------------------------");	
+		   		    	 System.out.print("\n|    (C)ontinue                                                   |");
+		   		    	 System.out.print("\n|    (B)ack                                                       |");
+		   		    	 System.out.print("\n-------------------------------------------------------------------\n");
 		   		     	 System.out.print("Please Enter your Choice: ");
 		   		    	 
 		   		    	 CHOICE1 = INPUT1.nextLine();
 		   		    	 CHOICE1 = CHOICE1.toLowerCase(); 
 		   		    	 
-		   		     }while(CHOICE1.charAt(0) != 'q');//End while
-		    		System.out.println("\n\n");			    		 
+		   		    } while(CHOICE1.charAt(0) != 'b'); // end while
+		    		System.out.println("\n");			    		 
 		    		
-		    		break;	    		
-		    		    
-		    	 
-		    		    	 
-		    	 case 'd': 
-		    		 
+		    			break;	    		
+		    	
+		    	// Displaying Student Records
+		    	case 'd':
+		    		
 		    		char[] data= new char [1000];
-						
-		 			try {
-		 				
+		    		
+		    		System.out.println("\n\n------- D I S P L A Y I N G  S T U D E N T  R E C O R D S ---------\n"); 
+					
+		    		// Reading data from file
+		 			try 
+		 			{
 		 				FileReader input = new FileReader ("student.txt");
 		 				input.read(data);
-		 				System.out.println("\nStudent Records");
 		 				System.out.println(data);
 		 				input.close();
-		 				
-		 			} catch (IOException e) {
-		 				
-		 				System.out.println("File Read Error");
+		 			} 
+		 			catch(IOException e) 
+		 			{
+		 				System.err.println("Student Records Cannot Be Displayed");
 		 			}
 		 			
-		    	 break; 
-		    	 		  	 
-		    	 case 'q': break; 
-		    	 default :  System.out.print("\n\tInvald Input\n");
-		    	 }
+		 			break; 
+		    	
+		 		// Quit
+		    	case 'q': 
+		    		break; 
+		    		 
+		    	default:  
+		    		System.out.print("\n\tInvald Input\n");
+		    }
 		    	 
-		     }//End while			
+	    }// end while			
 	}
 	
+	// METHOD TO CREATE PROGRAMMES
 	public void createProgramme()
 	{	
-		//Creating the file 
 		File myFile = new File ("programme.txt");
 		
 		Scanner s= new Scanner(System.in);
 		Scanner s1= new Scanner(System.in);
 		Scanner INPUT = new Scanner (System.in);
 		Scanner INPUT1 = new Scanner (System.in);
+		
 		String CHOICE1= "c";
+		
+		System.out.println("\n--------------- P R O G R A M M E  C R E A T I O N ----------------\n"); 
 		
 		try 
 		{
-			if(myFile.createNewFile())
+			if (!myFile.exists())
 			{
-				System.out.println("Programme File Ceated Successfully");
+				myFile.createNewFile(); //creates programme file if one does not exist
+	        	System.out.println("[Programme File Created Successfully.]");
 			}
-			else 
-			{
-				System.out.println("Programme File Creation Error");
-			} 
 		} 
 		catch (IOException e) 
 		{
-			System.out.println("Programme File Error");
+			System.err.println("Error: Programme File Could Not Be Created.");
 		}
 		
 		do
 		{
-		    	 switch(CHOICE1.charAt(0))
-		    	 {
-		    	 	case 'c':  	
-		    	 		System.out.println("\n-----PROGRAMME CREATION-----");  
-												
-						System.out.print("\nEnter Programme Code: ");
-						String programmeCode = s1.nextLine();
+			switch(CHOICE1.charAt(0))
+			{
+				// Continue
+				case 'c':
+					// Populating Programme Record
+					System.out.print("\nEnter Programme Code: ");
+					String programmeCode = s1.nextLine();
+					
+					programmeCode = programmeCode.toUpperCase(); //converting programme code entered to uppercase
 						
-						programmeCode = programmeCode.toUpperCase(); 
-						
-						System.out.print("\nEnter Name: ");
-						String name = s1.nextLine();
-						
-						System.out.print("\nEnter Maximum Courses: ");
-						int maxCourses = s.nextInt();										
+					System.out.print("\nEnter Name: ");
+					String name = s1.nextLine();
+					
+					System.out.print("\nEnter Maximum Courses: ");
+					int maxCourses = s.nextInt();										
 													
-						System.out.print("\nEnter Award: ");
-						String award = s1.nextLine();
+					System.out.print("\nEnter Award: ");
+					String award = s1.nextLine();
 						
-						System.out.print("\nEnter Accreditation: ");
-						String accreditation = s1.nextLine();
+					System.out.print("\nEnter Accreditation: ");
+					String accreditation = s1.nextLine();
 						
-			 			try 
-			 			{
-		  		 			FileWriter output = new FileWriter ("programme.txt",true);
-		  		 			
-		  		 			output.write(programmeCode+"   "+name+"   "+maxCourses+"   "+award+"   "+accreditation+"\n");
-		  		 			
-		  		 			System.out.println("\n*******************************************************************************************");
-		  		 			System.out.println("\n"+name+" ("+programmeCode+") was Registered Successfully!");	
-		  		 			output.close(); 
-			 			} 
-			 			catch (IOException e) 
-			 			{
-			 				System.out.println("File Append Error");	
-			 			} 
-			 			
+					// Informing the user that the programme has been registered successfully
+		 			try 
+		 			{
+		 				FileWriter output = new FileWriter ("programme.txt",true);
+		  		 		
+		  		 		output.write(programmeCode+"   "+name+"   "+maxCourses+"   "+award+"   "+accreditation+"\n");
+		  				System.out.println("\n*******************************************************************");
+		  	 			System.out.println("\n"+name+" ("+programmeCode+") was Registered Successfully!");	
+	 		 			System.out.println("\n*******************************************************************");
+	 		 			output.close(); 
+			 		} 
+			 		catch (IOException e) 
+			 		{
+			 			System.err.println("File Append Error");	
+			 		} 
 			 			 
-			 			break;
-		    	   	 
-			    	 case 'q': 
-			    		 break; 
+			 		break;
+		    	
+			 	// Quit
+			    case 'q': 
+			    	break; 
 			    		 
-			    	 default: 
-			    		 System.out.print("\n\tInvald Input\n");
-			    	 }
+			    default: 
+			    	System.out.print("\n\tInvald Input\n");
+			}
 			    	 
-			    	 System.out.print("\n-------------------------------");	
-			    	 System.out.print("\n|         (C)ontinue          |");
-			    	 System.out.print("\n|         (Q)uit              |");
-			    	 System.out.print("\n-------------------------------\n");
-			     	 System.out.print("Please Enter your Choice: ");
+			System.out.print("\n-------------------------------------------------------------------");	
+	   		System.out.print("\n|    (C)ontinue                                                   |");
+	   	    System.out.print("\n|    (B)ack                                                       |");
+	   		System.out.print("\n-------------------------------------------------------------------\n");
+	   		System.out.print("Please Enter your Choice: ");
 			    	 
-			    	 CHOICE1 = INPUT1.nextLine();
-			    	 CHOICE1 = CHOICE1.toLowerCase(); 
+			CHOICE1 = INPUT1.nextLine();
+			CHOICE1 = CHOICE1.toLowerCase(); 
 		    	 
-		}while(CHOICE1.charAt(0) != 'q');//End while
+		} while(CHOICE1.charAt(0) != 'b');//end while
 		
 		System.out.println("\n");	
 	}
 	
-	public void displayProgramme()
+	// METHOD TO DISPLAY PROGRAMMES
+	public void displayProgrammes()
 	{
 		char[] data= new char [1000];
 		
+		// Reading data from file
 		try
 		{
 			FileReader input = new FileReader ("programme.txt");
@@ -389,10 +400,11 @@ public class Staff extends Administrator
 		} 
 		catch(IOException e) 
 		{	
-			System.out.println("File Read Error");
+			System.err.println("File Read Error");
 		}
 	}
 	
+	// METHOD TO MODIFY PROGRAMME
 	public void modifyProgramme()
 	{
         System.out.println("Programme code: ");
@@ -404,14 +416,34 @@ public class Staff extends Administrator
 		*/
 	} 
 	
+	// METHOD TO GENERATE STUDENT LIST
 	public void generateList()
-	{	
-		System.out.println("********* S T U D E N T  L I S T  G E N E R A T I O N *********\n");
-		
-        System.out.println("Programme code: ");
-        
-        
-        //a list of students should be generated according to the programme code entered.
+	{			
+		System.out.println("------------ S T U D E N T  L I S T  G E N E R A T I O N ------------\n");
+		try
+		{
+			Scanner sInFile = new Scanner(new File("student.txt"));
+			Scanner s= new Scanner(System.in);
+			Scanner s1= new Scanner(System.in);
+			String search;
+			
+			System.out.print("Programme code: ");
+			search = s.nextLine(); //assigns programme code entered to the search variable
+			
+			while(sInFile.hasNext())
+			{
+				String line = sInFile.nextLine().toLowerCase().toString();
+	            if(line.contains(search))
+	            {
+	                System.out.println(line); //prints student records that possess the programme code entered
+	            }
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.err.println("Error: Student List cannot be found");
+			e.printStackTrace();
+		}
 	}
 	
 	// Tostring Method
