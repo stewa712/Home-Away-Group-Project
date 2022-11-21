@@ -3,8 +3,12 @@ package HomeAway;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class ProgramRecordManagement {
 	
@@ -20,7 +24,7 @@ public class ProgramRecordManagement {
     // Method 1
     // Adding Record
     // @param record
-    public void add(Course record,String code)
+    public boolean add(Course record,String code)
     {
  
         // Checking if a record already exists or not,
@@ -36,24 +40,34 @@ public class ProgramRecordManagement {
     		BufferedReader reader = new BufferedReader(fr);
     		
     		String line;
+    		
+    		
+    		System.out.println("");
     			
     			
     			while( (line = reader.readLine() ) != null) {			  
     				if(line.contains(code)) {
     					
     					System.out.println("Record already exists in the Record list");
-    					break;
+    					return false;
     				}else {
-    					System.out.println("TEST!!");
-    					list.add(record);
-    				}			   
+    					continue;   					
+    					//list.add(record);
+    				}
+    				
+ 					
+    				
     			   
     			}//End inner while
+    			
+    			
     			
     		
     	}catch(Exception e) {
     		
     	}
+    	
+    	return true;
     	
       
     }//End method add
