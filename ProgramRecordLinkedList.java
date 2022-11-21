@@ -75,14 +75,9 @@ public class ProgramRecordLinkedList {
      	    		    System.out.println("Enter Program Code: ");
     					String progcode = s1.nextLine().toLowerCase();
     					
-    					System.out.println("\nCURRENT PROGCODE:"+progcode);
-    					
-    					
-    					
+    					   					
      	    		 	     					
-     					if(progcode.equals("cmpcsi123")) {
-     						
-     						
+     					if(progcode.equals("cmpcsi123")) {    						
      						
      						System.out.println("Enter Course Code: ");
          					String code = s1.nextLine();
@@ -107,9 +102,7 @@ public class ProgramRecordLinkedList {
          					
          					boolean result = pr.add(record, code);
          					
-         					System.out.println("RETURN TO CASE 1");
-         					
-         			
+         					      			
          					if(result) {
          						
 
@@ -197,10 +190,9 @@ public class ProgramRecordLinkedList {
       							
       							System.out.println("Enter Course Code To Delete: ");
       							String code = d1.nextLine().toUpperCase();
-              					System.out.println(code);
+              						System.out.println(code);
               					
-              					System.out.println("TEST!!");
-              					
+              					             					
       							File inputFile = new File("compcsi.txt");
       							File tempFile = new File("myTempFile.txt");
       							 
@@ -208,9 +200,7 @@ public class ProgramRecordLinkedList {
       							
       						    //System.out.println(fscan.nextLine());
       							
-      						    System.out.println("TEST!!");
-      							
-      							
+      						       							
       							
       							FileReader fr=new FileReader("compsci.txt");  
       							
@@ -232,12 +222,11 @@ public class ProgramRecordLinkedList {
       									break;
       								}else {
       									continue;
-      								}
+									
+      								}//End if else
       							   
       							   
-      							}//End inner while
-      							
-      							
+      							}//End inner while							
       							      							
       							writer.close(); 
       							reader.close(); 
