@@ -1,0 +1,38 @@
+CMPSCI123  
+Computer Science  
+40  
+Associate Degree   
+Yes 
+
+CIT2004 
+Object Oriented Programmin 
+Object Oriented Programming Techniques 
+3 
+Programming 2 
+cit2004 
+OOP 
+OOP 
+3 
+P2 
+cit2004 
+OP 
+OOP 
+2 
+ei 
+cit2004 
+OOP 
+OOP 
+3 
+P2 
+HomeAway.Course@5f2050f6 
+
+cit2004 
+Porgramming 
+Prog Tech 
+3 
+p32 
+com3215 
+Academic Writing 
+Ac Writing 
+3 
+A1 
