@@ -105,30 +105,39 @@ public class ProgramRecordLinkedList {
          					
          					ProgramRecordManagement pr = new ProgramRecordManagement();
          					
-         					pr.add(record, code);
+         					boolean result = pr.add(record, code);
          					
+         					System.out.println("RETURN TO CASE 1");
          					
+         			
+         					if(result) {
+         						
+
+         	     	 			try {
+         	     	 			FileWriter output = new FileWriter ("compsci.txt",true);
+         	     	 			output.write(code+ " ");
+         	     	 			output.write("\n");
+         	     	 			output.write(name+ " ");
+         	     	 			output.write("\n");
+         	     	 			output.write(desc+ " ");
+         	     	 			output.write("\n");
+         	     	 			output.write(credits+" ");
+         	     	 			output.write("\n");
+         	     	 			output.write(prereq+" ");
+         	     	 			output.write("\n");
+         	     	 			
+         	     	 			     	     	 			
+         	     	 			//System.out.println("Data Appended Successfully");	
+         	     	 			output.close(); 
+         	     	 			} catch (IOException e) {
+         	     	 			JOptionPane.showMessageDialog(null, "File Append Error");		
+         	     	 			} 
+         						
+         					}else {
+         						break;
+         					}      					
 
      						
-     	     	 			try {
-     	     	 			FileWriter output = new FileWriter ("compsci.txt",true);
-     	     	 			output.write(code+ " ");
-     	     	 			output.write("\n");
-     	     	 			output.write(name+ " ");
-     	     	 			output.write("\n");
-     	     	 			output.write(desc+ " ");
-     	     	 			output.write("\n");
-     	     	 			output.write(credits+" ");
-     	     	 			output.write("\n");
-     	     	 			output.write(prereq+" ");
-     	     	 			output.write("\n");
-     	     	 			
-     	     	 			     	     	 			
-     	     	 			//System.out.println("Data Appended Successfully");	
-     	     	 			output.close(); 
-     	     	 			} catch (IOException e) {
-     	     	 			JOptionPane.showMessageDialog(null, "File Append Error");		
-     	     	 			} 
      						
      					}     					
      					
