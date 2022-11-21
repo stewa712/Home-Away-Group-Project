@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeoprady</title>
+
+    <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+      body{
+         margin: 0;
+         padding: 0;
+         background-color: rgb(46,46,46);
+         color: rgb(225,225,225); 
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         font-family: 'Anton', sans-serif;
+      }
+      
+      #game{
+         display: flex;
+         background: rgb(32,32,32);
+      }
+      
+      .card{
+         width: 160px;
+         height: 160px;
+         background-color: rgb(26,26,255);
+         border-left: solid rgb(19,19,160) 10px;
+         border-right: solid rgb(11,11,91 ) 10px;
+         border-top: solid rgb(1,61,200) 10px;
+         border-bottom: solid rgb(20,20,89) 10px;
+         text-align: center;
+         font-size: 100px;
+         margin: 5px;
+         padding: 10px;
+         line-height: 120px;
+      }
+
+      .first-button{
+        background-color: rgb(24,171,24);
+      }
+
+      .second-button{
+        background-color: rgb(24,171,24);
+      }
+
+      .genre-title{
+        background-color: rgb(26,26,255);
+        text-align: center;
+        font-size: 28px;
+        padding: 5px;
+      }
+
+      h2{
+			font-family:Lucida Console;
+			font-size:5em;
+		}
+		
+		.container{
+			position: absolute;
+			top: 10%;
+			left: 5%;
+			transform: translate(-50%,-50%);
+		}
+
+      
+   
+
+    </style>
+
+
+</head>
+<body>
+
+        
+    <h1>Welcome To Jeoprady</h1>
+    <p> <button type="button" id="endgame" onclick="top.window.close();">End Game</button> </p>
+
+    <div class="container">
+        <h2 id="timer"></h1>
+        </div>
+    
+    <!--Container for the jeoprady board-->
+   <div id="game"></div>  
+       
+   
+
+   <h2>SCORE:$ <span id="score"></span></h2>
+      
+      
+     
+    
+
+    
+    <!--  -------------------------------J A V A S C R I P T--------------------------------------  -->
+
+    <script>
+
+        window.alert("Welcome to Jeopardy");
+
+        //Creating variables to initialize game and track player score
+        const game = document.getElementById('game');
+        const scoreDisplay = document.getElementById('score');
+
+        const jeopradyCategories = [
+            {
+                genre: 'General Knowledge',
+                questions: [
+                    {
+                        question: "Which language has the more native speakers?",
+                        answers: ['English','Spanish'],
+                        correct: 'Spanish',
+                        level:    'one',
+                        double: '' 
+
+                        
+                    },                   
+                       
+                    {
+                        question: 'What artist has the most streams on Spotify?',
+                        answers: ['Drake' , 'Rhianna'],
+                        correct: 'Drake',
+                        level: 'two',                       
+                        double: 'no', 
+
+                    },
+                    {
+                        question: 'Which planet is closest to the sun?',
+                        answers: ['Mercury', 'Venus'],
+                        correct: 'Mercury',
+                        level: 'three',                        
+                        double: '',
+                        
+
+                    },
+                    {
+                        question: ' What is the longest river in the world?',
+                        answers: ['Amazon' , 'Nile'],
+                        correct: 'Nile',
+                        level: 'four',                        
+                        double: '' 
+
+                        
+                    },
+                    {
+                        question: 'How many teeth does an adult human have? ',
+                        answers: [28,32],
+                        correct: 32,
+                        level: 'five',                       
+                        double: '' 
+
+                    
+
+                    },
+                ]
+
+            },// End General Knowledge Categorey
+
+            {
+
+                genre: 'Sports',
+                questions:[
+                    {
+                        question: 'Who is the fastest sprinter in the world?',
+                        answers: ['Usain Bolt' , 'Asafa Powell'],
+                        correct: 'Usain Bolt',
+                        level: "one",                        
+                        double: '' 
+
+                        
+                    },
+                    {
+                        question: 'How many medals did Jamaica win in the 2016 Olympics?',
+                        answers: [11, 14],
+                        correct: '14',
+                        level: 'two',                        
+                        double: '' 
+
+                    },
+                    {
+                        question: 'Who has won more tennis grand slam titles, Venus Williams or Serena Williams?',
+                        answers: ['Venus Williams','Serena Williams'],
+                        correct: 'Serena Williams',
+                        level: 'three',                        
+                        double: '' 
+
+                         
+
+                    },
+                    {
+                        question: 'Which boxer fought against Muhammad Ali and won?',
+                        answers: ['Joe Fraiser', 'George Foreman'],
+                        correct: 'Joe Fraiser',
+                        level: 'four',                        
+                        double: '' 
+
+                        
+
+                    },
+                    {
+                        question: 'What is the only sport to be played on the moon?',
+                        answers: ['Golf','Football'],
+                        correct: 'Golf',
+                        level: 'five',                       
+                        double: '' 
+
+                        
+
+                    }
+                ]
+
+            },//End Sports Categorey
+
+            {
+                genre: '4 Letter Words',
+                questions:[
+                    {
+                        question: 'Two-Wheeled form of transportation',
+                        answers: ['Clue: Begins with B'],
+                        correct: 'Bike',
+                        level: "one",                        
+                        double: '', 
+
+                       
+                    },
+                    {
+                        question: 'Superman can do this to steel in his bare hands',
+                        answers: ['Clue: Begins with B'],
+                        correct: 'Bend',
+                        level: 'two',                        
+                        double: null, 
+
+                       
+                    },
+                    {
+                        question: 'From the greek word for deep sleep, it is a deep prolonged unconsciousness',
+                        answers: ['Clue: Begins with C'],
+                        correct: 'Coma',
+                        level: "three",
+                        double: null, 
+
+                        
+
+                    },
+                    {
+                        question: 'It can be part of your foot your shoe your stocking or your loaf of bread',
+                        answers: ['Clue: Begins with H'],
+                        correct: 'Heel',
+                        level: "four",                       
+                        double: null
+
+
+                    },
+                    {
+                        question: 'This joint is formed by the articulation of the femur & the tibia',
+                        answers: [],
+                        correct: 'Knee',
+                        level: "five",
+                        double: null 
+
+                    }
+                ] 
+            },//End 4-Letter Categorey
+
+            {
+                genre: 'Jamaica',
+                questions:[
+                    {
+                        question: 'What is the National Dish',
+                        answers: ['Ackee','Jerk Chicken'],
+                        correct: 'Ackee',
+                        level: "one",                 
+                        double: null 
+
+                        
+                    },
+                    {
+                        question: 'How many Parishes are in Jamaica',
+                        answers: ['12','14'],
+                        correct: '12',
+                        level: 'two',            
+                        double: null 
+
+                        
+                    },
+                    {
+                        question: 'Who was the first Prime Minister',
+                        answers: ['Sangster','Bustamante'],
+                        correct: 'Bustamante',
+                        level: "three",                      
+                        double: null
+
+                       
+
+                    },
+                    {
+                        question: 'It can be part of your foot your shoe your stocking or your loaf of bread',
+                        answers: ['Clue: Begins with H'],
+                        correct: 'Heel',
+                        level: "four",                         
+                        double: null                       
+
+                    },
+                    {
+                        question: 'This joint is formed by the articulation of the femur & the tibia',
+                        answers: [],
+                        correct: 'Knee',
+                        level: "five",                     
+                        double: null                       
+
+                    }
+                ] 
+
+            },//End Nature Categorey
+
+            {
+                genre: 'Utech',
+                questions:[
+                    {
+                        question: 'Two-Wheeled form of transportation',
+                        answers: ['Clue: Begins with B'],
+                        correct: 'Bike',
+                        level: "one",                     
+                        double: null 
+
+                    },
+                    {
+                        question: 'Superman can do this to steel in his bare hands',
+                        answers: ['Clue: Begins with B'],
+                        correct: 'Bend',
+                        level: 'two',
+                        double: null                       
+
+
+                    },
+                    {
+                        question: "From the greek word for deep sleep, it is a deep prolonged unconsciousness",
+                        answers: ['Clue: Begins with C'],
+                        correct: 'Coma',
+                        level: 'three',                        
+                        double: null                       
+
+                    },
+                    {
+                        question: "It can be part of your foot your shoe your stocking or your loaf of bread",
+                        answers: ['Clue: Begins with H'],
+                        correct: 'Heel',
+                        level: "four", 
+                        double: null,
+
+                    },
+                    {
+                        question: 'This joint is formed by the articulation of the femur & the tibia',
+                        answers: ['Knee', 'Body'],
+                        correct: 'Knee',
+                        level: "five",
+                        double: true
+
+                    },
+                    
+                ] 
+            }
+
+            
+        ]//end jeopardyCategories
+
+    
+        //Setting initial score to $100
+    let score = 1000;
+
+
+   //Function to add categories to board
+   function addCategorey(categorey){
+
+      const column = document.createElement('div');
+      column.classList.add('genre-column');
+     
+      
+      const genreTitle = document.createElement('div');
+      genreTitle.classList.add('genre-title');
+      genreTitle.innerHTML = categorey.genre;
+
+      column.appendChild(genreTitle);
+      game.append(column);
+
+      categorey.questions.forEach(question => {
+        
+        const card = document.createElement('div');
+        card.classList.add('card');
+        column.append(card);
+
+        	
+      
+
+        
+      //Specifying dollar values of questions
+      if(question.level === 'one'){
+        card.innerHTML = 100 ;
+      }
+      if(question.level === 'two'){
+        card.innerHTML = 200;
+      }
+      if(question.level === 'three'){
+        card.innerHTML = 300;
+      }
+      if(question.level === 'four'){
+        card.innerHTML = 400;
+      }
+      if(question.level === 'five'){
+        card.innerHTML = 500;
+      }
+
+      
+
+      
+
+       //Assigning quesiton values to card div
+
+    card.setAttribute('data-question',question.question);
+    card.setAttribute('data-answer-1',question.answers[0]);
+    card.setAttribute('data-answer-2',question.answers[1]);
+    card.setAttribute('data-correct',question.correct);
+    
+    
+    card.setAttribute('data-value',card.getInnerHTML());
+
+
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    allCards.forEach(card => card.setAttribute('daily-double',question.double===(Math.random() >= 0.5)));
+    
+
+    if(question.double === true){
+        card.addEventListener('click',dailyDouble(wager));        
+    
+    }
+    if(question.double != 'yes'){
+
+        card.addEventListener('click',flipCard);
+    }
+          
+
+
+   
+    
+      })
+
+
+   }//End addCategories
+
+
+
+   jeopradyCategories.forEach(categorey => addCategorey(categorey));
+
+
+
+   
+
+
+   //flipCard function to display questions
+   function flipCard(){
+
+    
+
+    
+    var counter=60;
+
+		setInterval( function (){
+			//Decrement the counter
+			counter--;
+			if (counter>=0) {
+				document.getElementById('timer').innerHTML=counter;
+
+                if(counter==0){
+                
+                var choice = 0;
+                const cardOfButton = this.parentElement;
+
+                textDisplay.innerHTML = "Time's Up";
+                firstButton.innerHTML = "Forfiet";
+                secondButton.innerHTML = "Show Answer";
+                firstButton.addEventListener('click',Forefeit);
+                secondButton.addEventListener('click',checkAnswer); 
+            }
+              
+			}			
+			//Set interval to thousand
+		},100)
+
+
+        function stop() {
+            clearInterval(counter);            
+            counter = 60;
+            document.getElementById("para").innerHTML = counter;
+        }
+        
+    
+    this.innerHTML ="";
+    this.style.fontSize = "15px";
+    this.style.lineHeight = "30px";
+
+    
+
+    
+    const textDisplay = document.createElement('div');
+    textDisplay.classList.add('card-text');
+    textDisplay.innerHTML = this.getAttribute('data-question');
+    
+
+    const firstButton = document.createElement('button');
+    const secondButton = document.createElement('button');
+    firstButton.classList.add('first-button');
+    secondButton.classList.add('second-button');
+
+    //Assiging information from question array to firstButton and secondButton
+    firstButton.innerHTML = this.getAttribute('data-answer-1');
+    secondButton.innerHTML = this.getAttribute('data-answer-2');
+    firstButton.addEventListener('click',checkAnswer,);
+    secondButton.addEventListener('click',checkAnswer);
+    //firstButton.addEventListener('click',stop);
+    //secondButton.addEventListener('click',stop);
+    this.append(textDisplay, firstButton, secondButton);
+    
+    
+    //Disabling cardFlip function once card is flipped.
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    allCards.forEach(card => card.removeEventListener('click',flipCard));
+
+   
+
+   }//End flipCard
+
+   
+   //Checking if all questions have been answered
+
+   const allCards = Array.from(document.querySelectorAll('.card'));
+
+   
+   
+   
+
+  
+
+
+   
+
+   //Altering score based on player answet
+   function checkAnswer(wager){
+
+    window.alert("Wager Amount: "+wager);
+
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    allCards.forEach(card => card.addEventListener('click',flipCard));
+    
+    const cardOfButton = this.parentElement;
+
+    if(cardOfButton.getAttribute('data-correct') == this.innerHTML){
+        
+        score = score + parseInt(cardOfButton.getAttribute('data-value'));
+        scoreDisplay.innerHTML = score;
+        
+
+        //Removing card from table
+        while(cardOfButton.firstChild){
+
+            cardOfButton.removeChild(cardOfButton.lastChild);
+        }        
+
+    }else{
+
+        
+        score = score - parseInt(cardOfButton.getAttribute('data-value'));
+        scoreDisplay.innerHTML = score;
+
+        while(cardOfButton.firstChild){
+
+            cardOfButton.removeChild(cardOfButton.lastChild);
+        }
+
+        }//End if
+        cardOfButton.removeEventListener('click', flipCard);    
+
+
+   }//End checkAnswer
+
+
+   function Timeout(){
+
+
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    allCards.forEach(card => card.addEventListener('click',flipCard));
+    
+    const cardOfButton = this.parentElement;
+
+    if(cardOfButton.getAttribute('') == this.innerHTML){
+        
+        score = score + parseInt(cardOfButton.getAttribute('data-value'));
+        scoreDisplay.innerHTML = score;
+        
+
+        //Removing card from table
+        while(cardOfButton.firstChild){
+
+            cardOfButton.removeChild(cardOfButton.lastChild);
+        }        
+
+    }else{
+
+        
+        score = score - parseInt(cardOfButton.getAttribute('data-value'));
+        scoreDisplay.innerHTML = score;
+
+        while(cardOfButton.firstChild){
+
+            cardOfButton.removeChild(cardOfButton.lastChild);
+        }
+
+        }//End if
+        cardOfButton.removeEventListener('click', flipCard); 
+
+           
+
+   }
+
+   function doubleResult(wager){
+
+    
+
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    allCards.forEach(card => card.addEventListener('click',flipCard));
+
+    const cardOfButton = this.parentElement;
+
+    if(cardOfButton.getAttribute('double-correct') == this.innerHTML){
+        
+        score = score + wager;
+        scoreDisplay.innerHTML = score;
+        
+
+        //Removing card from table
+        while(cardOfButton.firstChild){
+
+            cardOfButton.removeChild(cardOfButton.lastChild);
+        }        
+
+    }else{
+
+    
+    score = score - parseInt(cardOfButton.getAttribute('data-value'));
+    scoreDisplay.innerHTML = score;
+
+    while(cardOfButton.firstChild){
+
+        cardOfButton.removeChild(cardOfButton.lastChild);
+    }
+
+    }//End if
+    cardOfButton.removeEventListener('click', flipCard);    
+
+
+}//End doubleResult
+
+function dailyDouble(){
+
+this.innerHTML = "";
+this.style.fontSize = "15px";
+this.style.lineHeight = "30px";
+
+window.alert("DAILY DOUBLE!");
+var wager = window.prompt("Enter Dollar Amount");
+
+while(wager>score){
+
+    window.alert("Cannot Wager more than current score");
+    var wager = window.prompt("Enter Dollar Amount");
+
+}
+
+card.setAttribute('data-value',wager);
+
+//Creating variables to store card information
+const textDisplay = document.createElement('div');
+textDisplay.classList.add('card-text');
+textDisplay.innerHTML = this.getAttribute('double-question');
+
+
+const firstButton = document.createElement('button');
+const secondButton = document.createElement('button');
+firstButton.classList.add('first-button');
+secondButton.classList.add('second-button');
+
+//Assiging information from question array to firstButton and secondButton
+firstButton.innerHTML = this.getAttribute('double-answer-1');
+secondButton.innerHTML = this.getAttribute('double-answer-2');
+firstButton.addEventListener('click',doubleResult(wager));
+secondButton.addEventListener('click',doubleResult(wager));
+this.append(textDisplay, firstButton, secondButton);
+
+
+//Disabling cardFlip function once card is flipped.
+const allCards = Array.from(document.querySelectorAll('.card'));
+allCards.forEach(card => card.removeEventListener('click',flipCard));
+
+const cardOfButton = this.parentElement;
+
+
+
+
+}
+
+
+   
+
+
+
+    </script>
+    
+
+
+</body>
+</html>
