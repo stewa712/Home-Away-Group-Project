@@ -75,9 +75,14 @@ public class ProgramRecordLinkedList {
      	    		    System.out.println("Enter Program Code: ");
     					String progcode = s1.nextLine().toLowerCase();
     					
-    					   					
+    					System.out.println("\nCURRENT PROGCODE:"+progcode);
+    					
+    					
+    					
      	    		 	     					
-     					if(progcode.equals("cmpcsi123")) {    						
+     					if(progcode.equals("cmpcsi123")) {
+     						
+     						
      						
      						System.out.println("Enter Course Code: ");
          					String code = s1.nextLine();
@@ -102,7 +107,9 @@ public class ProgramRecordLinkedList {
          					
          					boolean result = pr.add(record, code);
          					
-         					      			
+         					System.out.println("RETURN TO CASE 1");
+         					
+         			
          					if(result) {
          						
 
@@ -190,17 +197,15 @@ public class ProgramRecordLinkedList {
       							
       							System.out.println("Enter Course Code To Delete: ");
       							String code = d1.nextLine().toUpperCase();
-              						System.out.println(code);
+              					System.out.println(code);
               					
-              					             					
+              					
+              					
       							File inputFile = new File("compcsi.txt");
       							File tempFile = new File("myTempFile.txt");
       							 
-      							//Scanner fscan = new Scanner(inputFile);
+      						   
       							
-      						    //System.out.println(fscan.nextLine());
-      							
-      						       							
       							
       							FileReader fr=new FileReader("compsci.txt");  
       							
@@ -214,44 +219,78 @@ public class ProgramRecordLinkedList {
       							
       							while( (line = reader.readLine() ) != null) {
       								
-      								
+      								System.out.println("CURRENT LINE VALUE: "+line);								
       							  
-      								if(line.contains(code)) {
+      								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
       									
-      									System.out.println("PASS!");
-      									break;
-      								}else {
+      									String oldcode = "";
+      									line = oldcode;
+      									System.out.println("CODECHECK "+oldcode);
+      									System.out.println("OLD CODE: "+oldcode);
+      									writer.write(line);
+      									writer.write("\n");
+      									
+      									String oldname = "";
+      									String namecheck = reader.readLine();
+      									System.out.println("NMCHECK "+namecheck);
+      									System.out.println("OLDNAME : "+oldname);
+      									writer.write(oldname);
+      									writer.write("\n");
+      									
+      									String olddesc ="";
+      									String desccheck = reader.readLine();
+      									System.out.println("DESCHECK "+desccheck);
+      									System.out.println("OLD DESC : "+olddesc);
+      									writer.write(olddesc);
+      									writer.write("\n");
+      									
+      									String oldcredits = "";
+      									String credcheck = reader.readLine();
+      									System.out.println("CREDCHECK "+credcheck);
+      									System.out.println("OLD CREDITS: "+oldcredits);
+      									writer.write(oldcredits);
+      									writer.write("\n");
+      									
+      									String oldpre = "";
+      									String prereqcheck = reader.readLine();
+      									System.out.println("PRECHECK "+prereqcheck);
+      									System.out.println("OLD PREREQ : "+oldpre);
+      									writer.write(oldpre); 
+      									writer.write("\n");
       									continue;
-									
+      	      						
+      									
+      									
+      								}else { 									
+      									
+      									writer.write(line);
+      									writer.write("\n");				
       								}//End if else
       							   
       							   
-      							}//End inner while							
+      							}//End inner while   							
       							      							
       							writer.close(); 
-      							reader.close(); 
-      							boolean successful = tempFile.renameTo(inputFile);
+      							reader.close();
       							
       							
-              					System.out.println("Enter Course Name: ");
-              					String name = d1.nextLine();
-              					
-              					System.out.println("Enter Course Description: ");
-              					String desc = d1.nextLine();
-              					
-              					System.out.println("Enter Course Credits: ");
-              					int credits = d.nextInt();
-              									
-              					System.out.println("Enter Pre-Requisites: ");
-              					String prereq = d1.nextLine();
-              					System.out.println(code);
+      						//Deleting old file and replacing with updated version
+      							inputFile.delete();
+      							File dump = new File("compsci.txt");
+      							File delete = new File("")
+      							tempFile.renameTo(dump);
+      							tempFile.delete();
       							
-      							
+      						     							
       						}catch(Exception e) {
       							
-      						}     	     	 			
+      						}
       						
-      					}//End if     					
+      						
+      						
+      					}//End if 
+      					
+      					
       					
       			
       	    	 case 'q': break; 
