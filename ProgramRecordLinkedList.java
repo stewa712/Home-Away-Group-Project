@@ -204,6 +204,7 @@ public class ProgramRecordLinkedList {
       							File inputFile = new File("compcsi.txt");
       							File tempFile = new File("myTempFile.txt");
       							 
+      						
       						   
       							
       							
@@ -261,36 +262,31 @@ public class ProgramRecordLinkedList {
       	      						
       									
       									
-      								}else { 									
+      								}else {
+      									
       									
       									writer.write(line);
-      									writer.write("\n");				
-      								}//End if else
+      									writer.write("\n");
+      									
+      								}
       							   
       							   
-      							}//End inner while   							
+      							}//End inner while     							
+      							
       							      							
       							writer.close(); 
-      							reader.close();
+      							reader.close();      							
       							
-      							
-      						//Deleting old file and replacing with updated version
+      							//Deleting old file and replacing with updated version
       							inputFile.delete();
-      							File dump = new File("compsci.txt");
-      							File delete = new File("")
+      							File dump = new File("myTempFile.txt");
       							tempFile.renameTo(dump);
-      							tempFile.delete();
-      							
       						     							
       						}catch(Exception e) {
       							
-      						}
+      						}     	     	 			
       						
-      						
-      						
-      					}//End if 
-      					
-      					
+      					}//End if     					
       					
       			
       	    	 case 'q': break; 
@@ -307,10 +303,183 @@ public class ProgramRecordLinkedList {
 
          // Case 3
          case 3:
+        	 
+        	Scanner u = new Scanner(System.in);
+       		Scanner u1 = new Scanner(System.in);
+       		String CHOICE3 = " ";
+       		Scanner INPUT3 = new Scanner (System.in);	
+       	 
+       	 
+       		          
+                // Entering course record
+         	while(CHOICE3.charAt(0) != 'q')
+       	     {
+       	    	 System.out.print("\n\n");	
+       	    	 System.out.print("\n-----------------------------");	
+       	    	 System.out.print("\n|  (E)nter Program Code      |");
+       	    	 System.out.print("\n|  (Q)uit                    |");
+       	    	 System.out.print("\n-----------------------------\n");
+       	     	 System.out.print("Please Enter your Choice: \n");
+       	    	 
+       	    	 CHOICE3 = INPUT3.nextLine();
+       	    	 CHOICE3 = CHOICE3.toLowerCase(); 
+       	    	 
+       	    	 switch(CHOICE3.charAt(0))
+       	    	 {
+       	    	 case 'e':  	    		 
+       	    		 
+       	    		 	
+       	    		 	      	    		 	
+       	    		    System.out.print("Staff Record File Access");
+       	    		    System.out.print("\n\n");
+       	    		    
+       	    		    System.out.println("Enter Program Code: ");
+      					String progcode = u1.nextLine().toLowerCase();
+      					
+      					
+       	    		 	     					
+       					if(progcode.equals("cmpcsi123")) {
+       						
+       						System.out.println("\nCOMPUTER SCIENCE COURSES\n "+progcode);
+          					
+       						
+       						      						
+       						try {
+       							
+       							System.out.println("Enter Course Code To Delete: ");
+       							String code = u1.nextLine().toUpperCase();
+               					System.out.println(code);
+               					
+               					
+               					
+       							File inputFile = new File("compcsi.txt");
+       							File tempFile = new File("myTempFile.txt");
+       							 
+       						
+       						   
+       							
+       							
+       							FileReader fr=new FileReader("compsci.txt");  
+       							
+       							System.out.println("\nINPUT FILE: "+inputFile);
 
-            
+       							BufferedReader reader = new BufferedReader(fr);
+       							BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+       							
+       							String line = reader.readLine();
+       							
+       							
+       							while( (line = reader.readLine() ) != null) {
+       								
+       								writer.write(line);
+   									writer.write("\n");
+       								
+       								System.out.println("CURRENT LINE VALUE: "+line);								
+       							  
+       								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
+       									
+       									Scanner scan = new Scanner(System.in);
+       									Scanner scan1 = new Scanner(System.in);
+       									
+       									String oldcode = "";
+      									line = oldcode;
+      									
+      									writer.write(line);
+      									writer.write("\n");
+      									
+      									String oldname = "";
+      									String namecheck = reader.readLine();
+      									
+      									writer.write(oldname);
+      									writer.write("\n");
+      									
+      									String olddesc ="";
+      									String desccheck = reader.readLine();
+      									
+      									writer.write(olddesc);
+      									writer.write("\n");
+      									
+      									String oldcredits = "";
+      									String credcheck = reader.readLine();
+      									
+      									writer.write(oldcredits);
+      									writer.write("\n");
+      									
+      									String oldpre = "";
+      									String prereqcheck = reader.readLine();
+      									System.out.println("PRECHECK "+prereqcheck);
+      									System.out.println("OLD PREREQ : "+oldpre);
+      									writer.write(oldpre); 
+      									writer.write("\n");
+       									
+       									
+       									System.out.println("Enter New Course Code: ");
+       									String newcode = scan.nextLine();
+       									System.out.println("CODE: "+newcode);
+       									writer.write(newcode);
+       									writer.write("\n");
+       									
+       									
+       									System.out.println("Enter New Course Name: ");
+       									String newname = scan.nextLine();
+       									System.out.println("NAME : "+newname);
+       									writer.write(newname);
+       									writer.write("\n");
+       									
+       									System.out.println("Enter New Course Description: ");
+       									String newdesc = scan.nextLine();
+       									System.out.println("DESC : "+newdesc);
+       									writer.write(newdesc);
+       									writer.write("\n");
+       									
+       									//scan.nextLine();
+       									
+       									System.out.println("Enter New Course Credits: ");
+       									int newcred = scan1.nextInt();
+       									System.out.println("CREDITS: "+newcred);
+       									writer.write(newcred);
+       									writer.write("\n");
+       									
+       									System.out.println("Enter New Pre-Requisites: ");
+       									String newpre = scan.nextLine();
+       									System.out.println("OLD PREREQ : "+newpre);
+       									writer.write(newpre); 
+       									writer.write("\n");
+       									continue;
+       	      						
+       									
+       									
+       								}else {       									
+       									continue;      									
+       								}       							   
+       							   
+       							}//End inner while     							
+       							
+       							      							
+       							writer.close(); 
+       							reader.close();      							
+       							
+       							//Deleting old file and replacing with updated version
+       							inputFile.delete();
+       							File dump = new File("myTempFile.txt");
+       							tempFile.renameTo(dump);
+       						     							
+       						}catch(Exception e) {
+       							
+       						} 
+       						
+       					}//End if
+       						
+       				 case 'q': break; 
+          	    	 default :  System.out.print("\n\tInvald Input\n");
+          	    	 
+          	    	 }
+          	    	 
+          	     }//End while       	
 
-             break;//End case 3
+                 
+
+                 break;//End case 3
 
         
          // Case 5
