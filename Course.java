@@ -15,15 +15,15 @@ public class Course
 	//Default Constructor
 	public Course()
 	{
-		this.courseCode = courseCode; 
-		this.courseName = courseName; 
-		this.desc = "";
-		this.credits = 0;
-		this.preReq = "" ;
+		courseCode = ""; 
+		courseName = ""; 
+		desc = "";
+		credits = 0;
+		preReq = "";
 	}
 	
 	//Primary Constructor
-	public Course(String courseCode, String courseName, String desc, int credits,String preR)
+	public Course(String courseCode, String courseName, String desc, int credits,String preReq)
 	{
 		this.courseCode = courseCode; 
 		this.courseName = courseName; 
