@@ -178,7 +178,7 @@ public class Student extends Administrator {
   	     {
   	    	 System.out.print("\n\n");	
   	    	 System.out.print("\n-----------------------------");	
-  	    	 System.out.print("\n|  (E)nter Program Code      |");
+  	    	 System.out.print("\n|  (A)dd Courses             |");
   	    	 System.out.print("\n|  (Q)uit                    |");
   	    	 System.out.print("\n-----------------------------\n");
   	     	 System.out.print("Please Enter your Choice: \n");
@@ -188,27 +188,19 @@ public class Student extends Administrator {
   	    	 
   	    	 switch(CHOICE2.charAt(0))
   	    	 {
-  	    	 case 'e':  
+  	    	 case 'a':  
   	    		 
   	    		 
   	    		 
   	    		 	System.out.println("Enter Student Password: ");
   	    		 	String stupass = d.nextLine(); 		   
- 					
- 					
+ 							
  					
  					if(stupass.equals("ste123")) {
  						
- 						File stuFile = new File("zachary.txt"); 						
- 						System.out.println("Enter Program Code: ");
- 	 					String progcode = d1.nextLine().toLowerCase();
- 	 					System.out.println("PROG CODE: "+progcode);	 					
- 	 					
-     					
-  					if(progcode.equals("cmpsci123")) {
+ 						File stuFile = new File("zachary.txt");							
   						
-  						System.out.println("\nCOMPUTER SCIENCE COURSES\n "+progcode);    					
-  						
+  						System.out.println("\nCOMPUTER SCIENCE PROGRAM ");  						
   						      						
   						try {
   							
@@ -231,7 +223,7 @@ public class Student extends Administrator {
   							
   							while( (line = reader.readLine() ) != null) {
   								
-  								System.out.println("CURRENT LINE VALUE: "+line);								
+  																
   							  
   								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
   									
@@ -267,16 +259,12 @@ public class Student extends Administrator {
   									
   									writer.write(prereq); 
   									writer.write("\n");
-  									break;
-  									
-  									
-  	      						
+  									break;				
   									
   									
   								}else {
   									
-  									continue;
-  								  									
+  									continue; 								  									
   								}
   							   
   							   
@@ -286,26 +274,280 @@ public class Student extends Administrator {
   							fr.close();
   							reader.close();
   							writer.flush();
-  							writer.close();      							
+  							writer.close();	
   							
-  							//Deleting old file and replacing with updated version
-  							//inputFile.delete();
-  							//File dump = new File("myTempFile.txt");
-  							//tempFile.renameTo(dump);
   						     							
   						}catch(Exception e) {
   							
   						}     	     	 			
   						
-  					}//End if     					
- 	 					
-							
-							
-							
-				}//End outer if
+  					}//End if 
  					
  					
-  	    		 	
+ 					
+ 					if(stupass.equals("ade123")) {
+ 						
+ 						File stuFile = new File("aaliyah.txt");							
+  						
+  						System.out.println("\nCOMPUTER SCIENCE PROGRAM ");  						
+  						      						
+  						try {
+  							
+  							System.out.println("Enter Course Code To Add: ");
+  							String code = d1.nextLine().toUpperCase();
+          					System.out.println(code);  			
+          					
+          					
+  							File inputFile = new File("compsci.txt");
+  							 							
+  							FileReader fr=new FileReader("compsci.txt");  
+  							
+  							System.out.println("\nINPUT FILE: "+inputFile);
+
+  							BufferedReader reader = new BufferedReader(fr);
+  							BufferedWriter writer = new BufferedWriter(new FileWriter(stuFile));
+  							
+  							String line;
+  							
+  							
+  							while( (line = reader.readLine() ) != null) {
+  								
+  														
+  							  
+  								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
+  									
+  									
+  									System.out.println("CODECHECK "+line);
+  									
+  									writer.write(line);
+  									writer.write("\n");
+  									
+  									
+  									String name = reader.readLine();
+  									System.out.println("NMCHECK "+name);
+  									
+  									writer.write(name);
+  									writer.write("\n");
+  									
+  									
+  									String desc = reader.readLine();
+  									System.out.println("DESCHECK "+desc);
+  									
+  									writer.write(desc);
+  									writer.write("\n");
+  									
+  									
+  									String cred = reader.readLine();
+  									System.out.println("CREDCHECK "+cred);
+  									writer.write(cred);
+  									writer.write("\n");
+  									
+  									
+  									String prereq = reader.readLine();
+  									System.out.println("PRECHECK "+prereq);
+  									
+  									writer.write(prereq); 
+  									writer.write("\n");
+  									break;				
+  									
+  									
+  								}else {
+  									
+  									continue; 								  									
+  								}
+  							   
+  							   
+  							}//End inner while     							
+  							
+  							      							
+  							fr.close();
+  							reader.close();
+  							writer.flush();
+  							writer.close();	
+  							
+  						     							
+  						}catch(Exception e) {
+  							
+  						}     	     	 			
+  						
+  					}//End if 
+ 					
+ 					
+ 					if(stupass.equals("bro123")) {
+ 						
+ 						File stuFile = new File("aaron.txt");
+ 						
+ 						System.out.println("\nELECTRICAL ENGINEERING PROGRAM ");   						
+  											
+  						      						
+  						try {
+  							
+  							System.out.println("Enter Course Code To Add: ");
+  							String code = d1.nextLine().toUpperCase();
+          					System.out.println(code);  			
+          					
+          					
+  							File inputFile = new File("compsci.txt");
+  							 							
+  							FileReader fr=new FileReader("compsci.txt");  
+  							
+  							System.out.println("\nINPUT FILE: "+inputFile);
+
+  							BufferedReader reader = new BufferedReader(fr);
+  							BufferedWriter writer = new BufferedWriter(new FileWriter(stuFile));
+  							
+  							String line;
+  							
+  							
+  							while( (line = reader.readLine() ) != null) {
+  								
+  														
+  							  
+  								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
+  									
+  									
+  									System.out.println("CODECHECK "+line);
+  									
+  									writer.write(line);
+  									writer.write("\n");
+  									
+  									
+  									String name = reader.readLine();
+  									System.out.println("NMCHECK "+name);
+  									
+  									writer.write(name);
+  									writer.write("\n");
+  									
+  									
+  									String desc = reader.readLine();
+  									System.out.println("DESCHECK "+desc);
+  									
+  									writer.write(desc);
+  									writer.write("\n");
+  									
+  									
+  									String cred = reader.readLine();
+  									System.out.println("CREDCHECK "+cred);
+  									writer.write(cred);
+  									writer.write("\n");
+  									
+  									
+  									String prereq = reader.readLine();
+  									System.out.println("PRECHECK "+prereq);
+  									
+  									writer.write(prereq); 
+  									writer.write("\n");
+  									break;				
+  									
+  									
+  								}else {
+  									
+  									continue; 								  									
+  								}
+  							   
+  							   
+  							}//End inner while     							
+  							
+  							      							
+  							fr.close();
+  							reader.close();
+  							writer.flush();
+  							writer.close();	
+  							
+  						     							
+  						}catch(Exception e) {
+  							
+  						}     	     	 			
+  						
+  					}//End if 
+ 					
+ 					
+ 					
+ 					if(stupass.equals("mil123")) {
+ 						
+ 						File stuFile = new File("kevaughn.txt");							
+  						
+ 						System.out.println("\nSPORT SCIENCE PROGRAM ");   						
+  						      						
+  						try {
+  							
+  							System.out.println("Enter Course Code To Add: ");
+  							String code = d1.nextLine().toUpperCase();
+          					System.out.println(code);  			
+          					
+          					
+  							File inputFile = new File("compsci.txt");
+  							 							
+  							FileReader fr=new FileReader("compsci.txt");  
+  							
+  							System.out.println("\nINPUT FILE: "+inputFile);
+
+  							BufferedReader reader = new BufferedReader(fr);
+  							BufferedWriter writer = new BufferedWriter(new FileWriter(stuFile));
+  							
+  							String line;
+  							
+  							
+  							while( (line = reader.readLine() ) != null) {
+  								
+  												  
+  								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
+  									
+  									
+  									System.out.println("CODECHECK "+line);
+  									
+  									writer.write(line);
+  									writer.write("\n");
+  									
+  									
+  									String name = reader.readLine();
+  									System.out.println("NMCHECK "+name);
+  									
+  									writer.write(name);
+  									writer.write("\n");
+  									
+  									
+  									String desc = reader.readLine();
+  									System.out.println("DESCHECK "+desc);
+  									
+  									writer.write(desc);
+  									writer.write("\n");
+  									
+  									
+  									String cred = reader.readLine();
+  									System.out.println("CREDCHECK "+cred);
+  									writer.write(cred);
+  									writer.write("\n");
+  									
+  									
+  									String prereq = reader.readLine();
+  									System.out.println("PRECHECK "+prereq);
+  									
+  									writer.write(prereq); 
+  									writer.write("\n");
+  									break;				
+  									
+  									
+  								}else {
+  									
+  									continue; 								  									
+  								}
+  							   
+  							   
+  							}//End inner while     							
+  							
+  							      							
+  							fr.close();
+  							reader.close();
+  							writer.flush();
+  							writer.close();	
+  							
+  						     							
+  						}catch(Exception e) {
+  							
+  						}     	     	 			
+  						
+  					}//End if 
   					
   			
   	    	 case 'q': break; 
@@ -329,6 +571,8 @@ public class Student extends Administrator {
 	
 	//Method to generate student fees
 	public void genreateFee() {
+		
+		
 		
 	}
 	
