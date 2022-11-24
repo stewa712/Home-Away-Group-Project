@@ -1,6 +1,9 @@
+//Author: Kevaughn Miles
+
 package records;
 
-public class Name {
+public class Name 
+{
 	
 	private String fName;
 	private String mName;
@@ -9,13 +12,13 @@ public class Name {
 	//Default Constructor
 	public Name()
 	{
-		fName = "James";
-		mName = "Arnold";
-		lName = "Bond";
+		fName = "";
+		mName = "";
+		lName = "";
 	}
 	
 	//Primary Constructor
-	public Name ( String fName, String mName, String lName)
+	public Name (String fName, String mName, String lName)
 	{
 		this.fName = fName;
 		this.mName = mName;
@@ -30,8 +33,7 @@ public class Name {
 		this.lName = obj.lName;
 	}
 	
-	// Getters and Setters
-	
+	// Getters and Setters	
 	public String GetFName ()
 	{
 		return fName;
@@ -62,12 +64,14 @@ public class Name {
 		this.lName = lName;
 	}
 	
-	public void Display()
+	//toString Method
+	public String toString()
 	{
-		System.out.println("First Nane: "+fName+" ");
-		System.out.println("Middle Name: "+mName+" ");
-		System.out.println("Last Name: "+lName+" ");
-		System.out.println(":       "+fName+" "+mName+", "+lName);
+		String output;
+		
+		output = (fName+" "+mName+" "+lName);
+				
+		return output;
 	}
 }
 

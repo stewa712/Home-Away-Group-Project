@@ -1,9 +1,11 @@
+//Author: Aaliyah Adebukunola
+
 package records;
 
 public class Programme 
 {
-	private String code;
-	private String name;
+	private String progCode;
+	private String progName;
 	private int maxCourses;
 	private String award;
 	private String accred;
@@ -11,18 +13,18 @@ public class Programme
 	// Default Constructor
 	public Programme()
 	{
-		code = "";
-		name = "";
+		progCode = "";
+		progName = "";
 		maxCourses = 0;
 		award = "";
 		accred = "";
 	}
 	
 	// Primary constructor 
-	public Programme(String code, String name, int maxCourses, String award, String accred)
+	public Programme(String progCode, String progName, int maxCourses, String award, String accred)
 	{
-		this.code = code;
-		this.name = name;
+		this.progCode = progCode;
+		this.progName = progName;
 		this.maxCourses = maxCourses;
 		this.award = award;
 		this.accred = accred;
@@ -31,32 +33,32 @@ public class Programme
 	// Copy Constructor
 	public Programme(Programme copy)
 	{
-		this.code = copy.code;
-		this.name = copy.name;
+		this.progCode = copy.progCode;
+		this.progName = copy.progName;
 		this.maxCourses = copy.maxCourses;
 		this.award = copy.award;
 		this.accred = copy.accred;
 	}
 	
 	// Getters and Setters
-	public String getCode() 
+	public String getProgCode() 
 	{
-		return code;
+		return progCode;
 	}
 
-	public void setCode(String code) 
+	public void setProgCode(String progCode) 
 	{
-		this.code = code;
+		this.progCode = progCode;
 	}
 
-	public String getName() 
+	public String getProgName() 
 	{
-		return name;
+		return progName;
 	}
 
-	public void setName(String name) 
+	public void setName(String progName) 
 	{
-		this.name = name;
+		this.progName = progName;
 	}
 
 	public int getMaxCourses() 
@@ -89,14 +91,14 @@ public class Programme
 		this.accred = accred;
 	}
 	
-	// Tostring Method
+	// toString Method
 	public String toString()
 	{
 		String output;
 		
 		output = "********* P R O G R A M M E  D E T A I L S *********\n";
-		output += "\nCode                      : "+code;
-		output += "\nName                      : "+name;
+		output += "\nCode                      : "+progCode;
+		output += "\nName                      : "+progName;
 		output += "\nMaximum Number of Courses : "+maxCourses;
 		output += "\nAward                     : "+award;
 		output += "\nAccreditation             : "+accred;

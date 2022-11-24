@@ -1,33 +1,35 @@
-package HomeAway;
+//Author: Zachary Stewart
+	
+package records;
 
 public class Phone {
 	
 		private int areaCode;
 		private int prefix;
-		private int line;
+		private int lineNum;
 		
 		//Default Constructor
 		public Phone()
 		{
-			areaCode=0;
-			prefix=0;
-			line=0;
+			areaCode = 0;
+			prefix = 0;
+			lineNum = 0;
 		}
 		
 		//Primary Constructor 
-		public Phone(int areaCode, int prefix, int line)
+		public Phone(int areaCode, int prefix, int lineNum)
 		{
-			this.areaCode=areaCode;
-			this.prefix=prefix;
-			this.line=line;
+			this.areaCode = areaCode;
+			this.prefix = prefix;
+			this.lineNum = lineNum;
 		}
 		
 		//Copy Constructor 
 		public Phone(Phone telephone)
 		{
-			this.areaCode= telephone.areaCode;
-			this.prefix= telephone.prefix;
-			this.line= telephone.line;
+			this.areaCode = telephone.areaCode;
+			this.prefix = telephone.prefix;
+			this.lineNum = telephone.lineNum;
 		}
 		
 		//Getters and Setters 
@@ -47,13 +49,13 @@ public class Phone {
 		{
 			return prefix;
 		}
-		public void SetLine(int line)
+		public void SetLineNum(int lineNum)
 		{
-			this.line=line;
+			this.lineNum=lineNum;
 		}
-		public int GetLine()
+		public int GetLineNum()
 		{
-			return line;
+			return lineNum;
 		}
 		
 		
@@ -62,13 +64,8 @@ public class Phone {
 		{
 			String output;
 			
-			output = ("+areaCode+")+"-"+prefix+"-"+line;
+			output = ("("+areaCode+")"+prefix+"-"+lineNum);
 					
 			return output;
 		}
-
-		
-		
-		
-
 }

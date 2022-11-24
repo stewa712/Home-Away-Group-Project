@@ -1,3 +1,7 @@
+//Author: Kevaughn Miles
+
+package records;
+
 public class Address 
 {
 	private int stNum;
@@ -73,9 +77,13 @@ public class Address
 		this.country = country;
 	}
 	
-	public void Display()
+	//toString Method
+	public String toString()
 	{
-		System.out.println("Address: "+stNum+" "+stName);
-		System.out.println(":        "+parish+", "+country);
+		String output;
+		
+		output = (stNum+" "+stName+", "+parish+", "+country);
+				
+		return output;
 	}
 }

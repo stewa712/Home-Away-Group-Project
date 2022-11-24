@@ -1,92 +1,112 @@
-package HomeAway;
+//Author: Aaron Brown
 
-public class Course {
+package records;
+
+public class Course 
+{
 	
-	private String code ; 
-	private String name; 
+	private String courseCode; 
+	private String courseName; 
 	private String desc;
 	private int credits;
-	private String preR;
+	private String preReq;
 	
 	
 	//Default Constructor
 	public Course()
 	{
-		this.code=code; 
-		this.name = name; 
-		this.desc="Empty";
-		this.credits=3;
-		this.preR="Empty" ;
+		this.courseCode = courseCode; 
+		this.courseName = courseName; 
+		this.desc = "";
+		this.credits = 0;
+		this.preReq = "" ;
 	}
 	
 	//Primary Constructor
-	public Course(String code, String name, String desc, int credits,String preR)
+	public Course(String courseCode, String courseName, String desc, int credits,String preR)
 	{
-		this.code=code; 
-		this.name = name; 
-		this.desc=desc;
-		this.credits=credits;
-		this.preR=preR;
+		this.courseCode = courseCode; 
+		this.courseName = courseName; 
+		this.desc = desc;
+		this.credits = credits;
+		this.preReq = preReq;
 	}
 	
 	
 	//Copy Constructor
 	public Course(Course copy)
 	{
-		this.code=copy.code; 
-		this.name = copy.name; 
-		this.desc=copy.desc;
-		this.credits=copy.credits;
-		this.preR=copy.preR;
+		this.courseCode = copy.courseCode; 
+		this.courseName = copy.courseName; 
+		this.desc = copy.desc;
+		this.credits = copy.credits;
+		this.preReq = copy.preReq;
 	}
 	
 	//implementing getters and setters 
-	public String getCode() {
-		return code;
+	public String getCourseCode() 
+	{
+		return courseCode;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	
+	public void setCourseCode(String courseCode) 
+	{
+		this.courseCode = courseCode;
 	}
-	public String getName() {
-		return name;
+	
+	public String getCourseName() 
+	{
+		return courseName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	public void setCourseName(String courseName) 
+	{
+		this.courseName = courseName;
 	}
 
-	public String getDesc() {
+	public String getDesc() 
+	{
 		return desc;
 	}
-	public void setDesc(String desc) {
+	
+	public void setDesc(String desc) 
+	{
 		this.desc = desc;
 	}
 
-	public int getCredits() {
+	public int getCredits() 
+	{
 		return credits;
 	}
 
-	public void setCredits(int credits) {
+	public void setCredits(int credits) 
+	{
 		this.credits = credits;
 	}
 
-
-	public String getPreR() {
-		return preR;
+	public String getPreReq() 
+	{
+		return preReq;
 	}
 
-	public void setPreR(String preR) {
-		this.preR = preR;
+	public void setPreReq(String preReq) 
+	{
+		this.preReq = preReq;
 	}
 
-
-	public void Display(){
-
-		System.out.println("Name: "+name);
-		System.out.println("Code: "+code);
-		System.out.println("Description: "+desc);
-		System.out.println("Credtis: "+credits);
-		System.out.println("Pre-Requisites: "+preR);
+	//toString Method
+	public String toString()
+	{
+		String output;
 		
+		output = "********* C O U R S E  D E T A I L S *********\n";
+		output =  ("Name: "+courseName);
+		output += ("Code: "+courseCode);
+		output += ("Description: "+desc);
+		output += ("Credtis: "+credits);
+		output += ("Pre-Requisites: "+preReq);	
+				
+		return output;
 	}
-
 }
+

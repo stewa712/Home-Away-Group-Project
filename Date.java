@@ -1,3 +1,7 @@
+//Author: Aaron Brown
+
+package records;
+
 public class Date 
 {
 	private int day;
@@ -58,10 +62,14 @@ public class Date
 	{
 		this.year = year;
 	}
-	
-	// Display Method
-	public void Display()
+
+	//toString Method
+	public String toString()
 	{
-		System.out.println(day+"/"+month+"/"+year); // 00/00/0000
-	}	
+		String output;
+			
+		output = (day+"/"+month+"/"+year);
+				
+		return output;
+	}
 }
