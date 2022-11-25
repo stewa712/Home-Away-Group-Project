@@ -1,7 +1,4 @@
-//Created By Zachary Stewart
-//ID: 2101823
-
-package HomeAway;
+package records;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,10 +10,9 @@ import java.util.Scanner;
 
 //Creating Student class which is a child of the Administrator class
 
-public class Student extends Administrator {
-	
+public class Student extends Administrator 
+{
 	//Attributes of student class
-	
 	private Address address;
 	private Date dateEnrolled;
 	private String enrollStatus;
@@ -33,8 +29,7 @@ public class Student extends Administrator {
 	}
 	
 	// Primary Constructor
-	public Student(int id, Name name, String username, String password,Address address,
-			Date dateEnrolled,String enrollStatus, Phone phoneNum)
+	public Student(int id, Name name, String username, String password, Address address, Date dateEnrolled,String enrollStatus, Phone phoneNum)
 	{
 		super(id, name, username, password);
 		this.address = address;
@@ -55,11 +50,13 @@ public class Student extends Administrator {
 	
 	// Getters and setters
 
-	public Address getAddress() {
+	public Address getAddress() 
+	{
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(Address address) 
+	{
 		this.address = address;
 	}
 
@@ -80,16 +77,16 @@ public class Student extends Administrator {
 	}
 	
 	
-	
 	//----------------------------------------------------V I E W   P R O G R A M----------------------------------------------------------------
 	
 	//Method to view details of program
-	public void viewProgram() {
-		
+	public void viewProgram() 
+	{		
 		Scanner INPUT = new Scanner (System.in);
-		String CHOICE= " ";  
+		String CHOICE = " ";  
 		
-		 while(CHOICE.charAt(0) != 'q') {
+		while(CHOICE.charAt(0) != 'q') 
+		{
 			 
 			 System.out.print("\n\n");	
 	    	 System.out.print("\n----------- Menu -------------");	
@@ -119,8 +116,8 @@ public class Student extends Administrator {
 	 				System.out.println("FILE CODE: "+code);
 	 				
 	 					 				
-	 				if(progcode.equals(code)) {
-	 					
+	 				if(progcode.equals(code)) 
+	 				{
 	 					
 	 					System.out.println("\n\nProgramme Code   : "+progcode);
 	 					
@@ -135,37 +132,30 @@ public class Student extends Administrator {
 						
 						String accred = fileInp.next();
 						System.out.println("Accreditation    : "+accred);
-						break;
-						
-	 					
-	 				}else {
+						break;	
+	 				}
+	 				else 
+	 				{
 	 					continue;
 	 				}
 	 				
 	 				}fileInp.close();
 	 				
-	 			} catch (IOException e) {
-	 				
+	 			} 
+	    		catch (IOException e) 
+	    		{
 	 				System.out.println("File Read Error");
 	 			}    	
 	    	 }		 
-		 }//End while
+		 }//Endwhile	
+	}//End viewProgram()
 		
-				
-		
-	}//End viewProgram
-	
-	
-	
 	
 	//--------------------------------------------------A D D I N G    C O U R S E S--------------------------------------------------------
-	
-	
+		
 	
 	//Method for the student to add courses
-	public void addCourse() {
-		
-		
+	public void addCourse() {	
 		Scanner d = new Scanner(System.in);
   		Scanner d1 = new Scanner(System.in);
   		String CHOICE2 = " ";
@@ -488,7 +478,7 @@ public class Student extends Administrator {
   							String line;
   							
   							
-  							while( (line = reader.readLine() ) != null) {
+  							while((line = reader.readLine()) != null) {
   								
   												  
   								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
@@ -528,20 +518,18 @@ public class Student extends Administrator {
   									break;				
   									
   									
-  								}else {
-  									
+  								}
+  								else 
+  								{
   									continue; 								  									
   								}
   							   
-  							   
   							}//End inner while     							
-  							
-  							      							
+  														      							
   							fr.close();
   							reader.close();
   							writer.flush();
   							writer.close();	
-  							
   						     							
   						}catch(Exception e) {
   							
@@ -555,31 +543,92 @@ public class Student extends Administrator {
   	    	 }
   	    	 
   	     }//End while   
-		
-		
-		
-		
 	}//End addCourse
-
-
-
-
-
-	
-	
 	
 	
 	//Method to generate student fees
-	public void genreateFee() {
-		
-		
+	public void generateFee() 
+	{	
 		
 	}
 	
+	//Method to generate progress report
+	public void generateProgressReport() 
+	{	
+		Scanner d = new Scanner(System.in);
+  		
+		System.out.println("Enter Student Password: ");
+		String stupass = d.nextLine(); 		   
+					
+		if (stupass.equals("ste123")) 
+		{					
+			try 
+			{
+				Scanner stuFile = new Scanner(new File("zachary.txt"));  
+				while(stuFile.hasNext())
+				{
+					String line = stuFile.nextLine();
+					System.out.println(line); //prints student records that possess the programme code entered
+				}
+			}
+			catch(Exception e) 
+			{
+				System.err.println("Error: Courses cannot be found.");
+			}
+		}
+		else 
+			if (stupass.equals("ade123")) 
+			{					
+				try 
+				{
+					Scanner stuFile = new Scanner(new File("aaliyah.txt"));  
+					while(stuFile.hasNext())
+					{
+						String line = stuFile.nextLine();
+						System.out.println(line); //prints student records that possess the programme code entered
+					}
+				}
+				catch(Exception e) 
+				{
+					System.err.println("Error: Courses cannot be found.");
+				}
+			}
+			else
+				if (stupass.equals("bro123")) 
+				{					
+					try 
+					{
+						Scanner stuFile = new Scanner(new File("aaron.txt"));  
+						while(stuFile.hasNext())
+						{
+							String line = stuFile.nextLine();
+							System.out.println(line); //prints student records that possess the programme code entered
+						}
+					}
+					catch(Exception e) 
+					{
+						System.err.println("Error: Courses cannot be found.");
+					}
+				}
+				else
+					if (stupass.equals("mil123")) 
+					{					
+						try 
+						{
+							Scanner stuFile = new Scanner(new File("kevaughn.txt"));  
+							while(stuFile.hasNext())
+							{
+								String line = stuFile.nextLine();
+								System.out.println(line); //prints student records that possess the programme code entered
+							}
+						}
+						catch(Exception e) 
+						{
+							System.err.println("Error: Courses cannot be found.");
+						}
+					}			
+	}
 
-	
-	
-	
 	// Implementing the toString method
 	public String toString()
 	{
@@ -593,5 +642,4 @@ public class Student extends Administrator {
 		
 		return output;
 	}
-
 }
