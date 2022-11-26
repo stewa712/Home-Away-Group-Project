@@ -28,7 +28,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class Driver implements ActionListener  {	
+public class Driverz {	
 	
 	
 	private static JLabel label1;
@@ -59,7 +59,7 @@ public class Driver implements ActionListener  {
 			
 			Verification vfy = new Verification(); 
 			
-			
+			/*
 			JPanel panel = new JPanel();
 			JFrame frame = new JFrame();
 			
@@ -104,7 +104,7 @@ public class Driver implements ActionListener  {
 			panel.add(button);
 			
 					
-			
+			*/
 			
 						
 			
@@ -257,7 +257,7 @@ public class Driver implements ActionListener  {
         
 	}//End main
 
-	
+	/*
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -330,7 +330,7 @@ public class Driver implements ActionListener  {
    		
    	 }//End choice 2 if
 		
-	}
+	}*/
 	
 
 	
