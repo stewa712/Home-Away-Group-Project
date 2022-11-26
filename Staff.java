@@ -1,6 +1,4 @@
-/*
- * Aaliyah Adebukunola (2103579)
- */
+// Authors: Aaliyah Adebukunola & Zachary Stewart
 
 package records;
 
@@ -34,7 +32,7 @@ public class Staff extends Administrator
 	}
 	
 	// Primary Constructor 
-	public Staff(int id, Name name, String username, String password, String faculty, String department, Date dateEmployed)
+	public Staff(String id, Name name, String username, String password, String faculty, String department, Date dateEmployed)
 	{
 		super(id, name, username, password);
 		this.faculty = faculty;
@@ -85,35 +83,32 @@ public class Staff extends Administrator
 	// METHOD TO REGISTER STUDENTS
 	public void registerStudent()
 	{
-		Scanner s= new Scanner(System.in);
-		Scanner s1= new Scanner(System.in);
-		Scanner INPUT = new Scanner (System.in);
-			
-		String CHOICE= " ";   
+		Scanner s = new Scanner(System.in);
+		Scanner s1 = new Scanner(System.in);
+		Scanner INPUT = new Scanner (System.in);		
+		String CHOICE = "a";   
   
-	    while(CHOICE.charAt(0) != 'b')
+	    do
 	    {
-	    	System.out.print("\n-------------- S T U D E N T  R E G I S T R A T I O N -------------");	
-		    System.out.print("\n|    (A)dd A Record                                               |");
-		    System.out.print("\n|    (D)isplay Records                                            |");
-		    System.out.print("\n|    (B)ack                                                       |");
-		    System.out.print("\n-------------------------------------------------------------------\n");
+	    	System.out.println("\n------------- S T U D E N T  R E G I S T R A T I O N -------------");
+		    System.out.println("|                                                                  |");
+		    System.out.println("|  (A)dd A Student Account                                         |");
+		    System.out.println("|  (D)isplay Staff                                                 |");
+		    System.out.println("|  (Q)uit                                                          |");
+		    System.out.println("|                                                                  |");
+		    System.out.println("--------------------------------------------------------------------");
 		    System.out.print("Please Enter your Choice: ");
 		    	 
-		    CHOICE = INPUT.nextLine();
-		    CHOICE = CHOICE.toLowerCase(); //converts user input to lower case
+		    CHOICE = INPUT.nextLine().toLowerCase(); //converts user input to lower case
 		    
 		    switch(CHOICE.charAt(0))
 		    {
 		    	// Add Student Record
 		    	case 'a':
 		    		Scanner INPUT1 = new Scanner (System.in);
-		    		String CHOICE1= "c";
-		    		 
+		    		String CHOICE1 = "a";
 		    		File myFile = new File ("student.txt");
 		    		File myFile1 = new File ("studentlogin.txt");
-		    		 
-		    		System.out.println("\n\n------------- A D D I N G  S T U D E N T  R E C O R D -------------"); 
 		    		 
 		    		try
 		    		{
@@ -145,9 +140,10 @@ public class Staff extends Administrator
 		    		{
 		    			switch(CHOICE1.charAt(0))
 		    			{
-		    				// Continue
-		    				case 'c':
+		    				// Add another
+		    				case 'a':
 		    					// Populating the student record via user input
+		    					System.out.println("\n\n\n------------- A D D I N G  S T U D E N T  R E C O R D --------------\n");
 		    					System.out.print("\nEnter First Name: ");
 		   						String fName = s1.nextLine();
 		   						
@@ -200,11 +196,10 @@ public class Staff extends Administrator
 			   				    {
 			   				          e.printStackTrace();
 			   				    }
-			   				    
-		   						// Concatenating current year, programme code and a sequence to generate ID number
-		   						String idNum = currentYear+programmeCode+sequence; 
+			   				    		   				
+		   						String idNum = currentYear+programmeCode+sequence; //Concatenating current year, programme code and a sequence to generate ID number
 		   				    	
-		   						// Informing the user that the student has been registered
+		   						// Writing user input to file
 			   		 			try 
 			   		 			{
 				   		 			FileWriter output = new FileWriter ("student.txt",true);
@@ -212,15 +207,14 @@ public class Staff extends Administrator
 				   		 			output.write(idNum+"   "+fName+"   "+mName+"   "+lName+"   "+password+"   "+address+"   "+enrollStatus+"   "+day+"/"+month+"/"+year+"   "+programmeCode+"   ("+area+")"+prefix+"-"+line+"\n");
 				   		 			
 				   		 			System.out.println("\n*******************************************************************");
-				   		 			System.out.println("\n"+fName+" "+lName+" ("+idNum+") was Registered Successfully!");	
+				   		 			System.out.println("\n"+fName+" "+lName+" ("+idNum+") was Registered Successfully!"); // Informing the user that the student has been registered
 				   		 			output.close(); 
 			   		 			} 
 			   		 			catch (IOException e) 
 			   		 			{
-			   		 				System.err.println("File Append Error");	
+			   		 				System.err.println("Staff Account Could Not Be Added");	
 			   		 			} 
-			   		 			
-			   		 			// Displaying student's login details
+			   		 						   		 
 			   		 			try 
 			   		 			{
 			   			 			FileWriter output = new FileWriter ("studentlogin.txt",true);
@@ -230,27 +224,26 @@ public class Staff extends Administrator
 			   			 			output.write(password+" ");
 			   			 			output.write("\n");
 	
-			   			 
-			   			 			System.out.println("\nUsername: "+idNum+"\nPassword: "+password);
+			   			 			System.out.println("\nUsername: "+idNum+"\nPassword: "+password); // Displaying student's login details
 			   			 			System.out.println("\n*******************************************************************");
 			   			 			output.close(); 
 			   			 		} 
 			   		 			catch (IOException e) 
 			   		 			{
-			   			 			System.err.println("File Append Error");	
+			   			 			System.err.println("Student Login Information Could Not Be Added");	
 			   			 		} 
 			   		 			break;
 		   		    	   	
 			   		 		// Back
 		   		    	 	case 'b':
 		   		    	 		break; 
-		   		    		 
+		   		    		// Other 
 		   		    	 	default:
-		   		    	 		System.out.print("\n\tInvald Input\n");
+		   		    	 		System.out.print("\nInvald Input\n");
 		   		    	 }
 		   		    	 
-		   		    	 System.out.print("\n-------------------------------------------------------------------");	
-		   		    	 System.out.print("\n|    (C)ontinue                                                   |");
+		    			 System.out.print("\n-------------------------------------------------------------------");	
+		   		    	 System.out.print("\n|    (A)dd Another                                                |");
 		   		    	 System.out.print("\n|    (B)ack                                                       |");
 		   		    	 System.out.print("\n-------------------------------------------------------------------\n");
 		   		     	 System.out.print("Please Enter your Choice: ");
@@ -258,19 +251,18 @@ public class Staff extends Administrator
 		   		    	 CHOICE1 = INPUT1.nextLine();
 		   		    	 CHOICE1 = CHOICE1.toLowerCase(); 
 		   		    	 
-		   		    } while(CHOICE1.charAt(0) != 'b'); // end while
-		    		System.out.println("\n");			    		 
-		    		
-		    			break;	    		
+		   		    }while(CHOICE1.charAt(0) != 'b');
+		    		System.out.println("\n\n\n");
+		    		break;	    		
 		    	
 		    	// Displaying Student Records
 		    	case 'd':
 		    		
 		    		char[] data= new char [1000];
 		    		
-		    		System.out.println("\n\n------- D I S P L A Y I N G  S T U D E N T  R E C O R D S ---------\n"); 
+		    		System.out.println("\n\n\n------- D I S P L A Y I N G  S T U D E N T  R E C O R D S ---------\n"); 
 					
-		    		// Reading data from file
+		    		//Reading data from file
 		 			try 
 		 			{
 		 				FileReader input = new FileReader ("student.txt");
@@ -280,20 +272,22 @@ public class Staff extends Administrator
 		 			} 
 		 			catch(IOException e) 
 		 			{
-		 				System.err.println("Student Records Cannot Be Displayed");
+		 				System.err.println("Student Records Could Not Be Displayed");
 		 			}
-		 			
+		 			System.out.println("\n\n\n");
 		 			break; 
 		    	
 		 		// Quit
-		    	case 'q': 
+		    	case 'q':
+		    		System.out.print("\n\n\n");
 		    		break; 
-		    		 
+		    		
+		    	// Other	 
 		    	default:  
-		    		System.out.print("\n\tInvald Input\n");
+		    		System.out.print("\nInvald Input\n");
 		    }
 		    	 
-	    }// end while	
+	    } while(CHOICE.charAt(0) != 'q');	
 	    
 	    //closing scanners to prevent resource leaks
 	    s.close();
@@ -304,16 +298,12 @@ public class Staff extends Administrator
 	// METHOD TO CREATE PROGRAMMES
 	public void createProgramme()
 	{	
-		File myFile = new File ("programme.txt");
-		
+		File myFile = new File ("programme.txt");		
 		Scanner s= new Scanner(System.in);
 		Scanner s1= new Scanner(System.in);
-		Scanner INPUT = new Scanner (System.in);
-		
+		Scanner INPUT = new Scanner (System.in);		
 		String CHOICE1= "c";
-		
-		System.out.println("\n--------------- P R O G R A M M E  C R E A T I O N ----------------\n"); 
-		
+			
 		try 
 		{
 			if (!myFile.exists())
@@ -331,68 +321,65 @@ public class Staff extends Administrator
 		{
 			switch(CHOICE1.charAt(0))
 			{
-				// Continue
+				// Add Another
 				case 'c':
-					// Populating Programme Record
-					System.out.print("\nEnter Programme Code: ");
-					String programmeCode = s1.nextLine();
+					// Populating the programme record with user input
+					System.out.println("\n\n\n---------------- P R O G R A M M E  C R E A T I O N ----------------\n"); 
 					
-					programmeCode = programmeCode.toUpperCase(); //converting programme code entered to uppercase
+					System.out.print("Enter Programme Code: ");
+					String programmeCode = s1.nextLine().toUpperCase(); //converting programme code entered to uppercase
 						
-					System.out.print("\nEnter Name: ");
+					System.out.print("Enter Name: ");
 					String name = s1.nextLine();
 					
-					System.out.print("\nEnter Maximum Courses: ");
+					System.out.print("Enter Maximum Courses: ");
 					int maxCourses = s.nextInt();										
 													
-					System.out.print("\nEnter Award: ");
+					System.out.print("Enter Award: ");
 					String award = s1.nextLine();
 						
-					System.out.print("\nEnter Accreditation: ");
+					System.out.print("Enter Accreditation: ");
 					String accreditation = s1.nextLine();
-						
-					// Informing the user that the programme has been registered successfully
+										
 		 			try 
 		 			{
 		 				FileWriter output = new FileWriter ("programme.txt",true);
 		  		 		
-		  		 		output.write(programmeCode+"   "+name+"   "+maxCourses+"   "+award+"   "+accreditation+"\n");
+		  		 		output.write(programmeCode+"   "+name+"   "+maxCourses+"   "+award+"   "+accreditation+"\n");//Writing user input to file
 		  				System.out.println("\n*******************************************************************");
-		  	 			System.out.println("\n"+name+" ("+programmeCode+") was Registered Successfully!");	
+		  	 			System.out.println("\n"+name+" ("+programmeCode+") was Registered Successfully!");//Informing the user that the programme has been registered successfully	
 	 		 			System.out.println("\n*******************************************************************");
 	 		 			output.close(); 
 			 		} 
 			 		catch (IOException e) 
 			 		{
-			 			System.err.println("File Append Error");	
+			 			System.err.println("Programme Could Not Be Added");	
 			 		} 
 			 			 
 			 		break;
 		    	
 			 	// Quit
 			    case 'q': 
+			    	System.out.print("\n\n\n");
 			    	break; 
 			    		 
 			    default: 
-			    	System.out.print("\n\tInvald Input\n");
+			    	System.out.print("\nInvald Input\n");
 			}
 			    	 
 			System.out.print("\n-------------------------------------------------------------------");	
-	   		System.out.print("\n|    (C)ontinue                                                   |");
-	   	    System.out.print("\n|    (B)ack                                                       |");
-	   		System.out.print("\n-------------------------------------------------------------------\n");
-	   		System.out.print("Please Enter your Choice: ");
+		    System.out.print("\n|    (A)dd Another                                                |");
+		   	System.out.print("\n|    (B)ack                                                       |");
+		   	System.out.print("\n-------------------------------------------------------------------\n");
+		   	System.out.print("Please Enter your Choice: ");
 			    	 
-			CHOICE1 = INPUT.nextLine();
-			CHOICE1 = CHOICE1.toLowerCase(); 
+			CHOICE1 = INPUT.nextLine().toLowerCase(); 
 		    	 
-		} while(CHOICE1.charAt(0) != 'b');//end while
+		} while(CHOICE1.charAt(0) != 'b');
 		
-		System.out.println("\n");
-		
-		 s.close();
-		 s1.close();
-		 INPUT.close();
+		s.close();
+		s1.close();
+		INPUT.close();
 	}
 	
 	// METHOD TO DISPLAY PROGRAMMES
@@ -400,349 +387,291 @@ public class Staff extends Administrator
 	{
 		char[] data= new char [1000];
 		
+		System.out.println("\n\n\n------------ D I S P L A Y I N G  P R O G R A M M E S -------------\n"); 
+		
 		// Reading data from file
 		try
 		{
 			FileReader input = new FileReader ("programme.txt");
 			input.read(data);
-			System.out.println("\nProgramme Records");
 			System.out.println(data);
 			input.close();		
 		} 
 		catch(IOException e) 
 		{	
-			System.err.println("File Read Error");
+			System.err.println("Programmes Could Not Be Displayed");
 		}
+		System.out.println("\n\n\n");
 	}
 	
 	// METHOD TO MODIFY PROGRAMME
 	public void modifyProgramme()
 	{
         System.out.println("Programme code: ");
-        
-      //Creating object of class ProgramRecordLinkedList to add, delete and edit courses for each program
-		
+              
+		Course record = new Course(); //Creating object of class ProgramRecordLinkedList to add, delete and edit courses for each program
 	 	
-		Course record = new Course();
-	 			
-     
-	// Calling add() record method to add static data/(Hard CodedData) to linked List
-    // hr.add(record);
-
-     // Creating Scanner Object to read input
-     Scanner input = new Scanner(System.in);
-
-     // Creating option integer variable
-     int option = 0;
-
-    
-     do {
-    	 System.out.println("\nMENU");
-         System.out.println("1: Add Course");
-         System.out.println("2: Delete Course");
-         System.out.println("3: Update Course");
-         System.out.println("4: Display Course");
-         System.out.println("9: Go Back");
-         System.out.print("Enter your selection : ");
-         System.out.println("\n\n");
-         
-         option = input.nextInt();
-
-         // Switch case
-         switch (option) {
-
-         // Case 1
-         case 1:
-
-        	Scanner s= new Scanner(System.in);
-     		Scanner s1= new Scanner(System.in);
-     		String CHOICE1= " ";
-     		Scanner INPUT1 = new Scanner (System.in);	
-     	 
-     	 
-     		          
-              // Entering course record
-       	while(CHOICE1.charAt(0) != 'q')
-     	     {
-     	    	 System.out.print("\n\n");	
-     	    	 System.out.print("\n-----------------------------");	
-     	    	 System.out.print("\n|  (E)nter Program Code      |");
-     	    	 System.out.print("\n|  (Q)uit                    |");
-     	    	 System.out.print("\n-----------------------------\n");
-     	     	 System.out.print("Please Enter your Choice: \n");
-     	    	 
-     	    	 CHOICE1 = INPUT1.nextLine();
-     	    	 CHOICE1 = CHOICE1.toLowerCase(); 
-     	    	 
-     	    	 switch(CHOICE1.charAt(0))
-     	    	 {
-     	    	 case 'e':  	    		 
-     	    		 
-     	    		 	
-     	    		 	
-     	    		 	String choice = CHOICE1;
-     	    		 	System.out.println("\n\nCHOICE VALUE: "+choice);
-     	    		 	
-     	    		    System.out.print("Staff Record File Access");
-     	    		    System.out.print("\n\n");
-     	    		    
-     	    		    System.out.println("Enter Program Code: ");
-    					String progcode = s1.nextLine().toLowerCase();
-    					
-    					System.out.println("\nCURRENT PROGCODE:"+progcode);
-    					
-    					
-    					
-     	    		 	     					
-     					if(progcode.equals("cmpcsi123")) {
-     						
-     						
-     						
-     						System.out.println("Enter Course Code: ");
-         					String code = s1.nextLine();
-         					System.out.println(code);
-         											
-         					System.out.println("Enter Course Name: ");
-         					String name = s1.nextLine();
-         					
-         					System.out.println("Enter Course Description: ");
-         					String desc = s1.nextLine();
-         					
-         					System.out.println("Enter Course Credits: ");
-         					int credits = s.nextInt();
-         									
-         					System.out.println("Enter Pre-Requisites: ");
-         					String prereq = s1.nextLine();
-         					System.out.println(code);
-         					
-         					Course course = new Course(code,name,desc,credits,prereq);
-         					
-         					ProgrammeRecordManagement pr = new ProgrammeRecordManagement();
-         					
-         					boolean result = pr.add(record, code);
-         					
-         					System.out.println("RETURN TO CASE 1");
-         					
-         			
-         					if(result) {
-         						
-
-         	     	 			try {
-         	     	 			FileWriter output = new FileWriter ("compsci.txt",true);
-         	     	 			output.write(code+ " ");
-         	     	 			output.write("\n");
-         	     	 			output.write(name+ " ");
-         	     	 			output.write("\n");
-         	     	 			output.write(desc+ " ");
-         	     	 			output.write("\n");
-         	     	 			output.write(credits+" ");
-         	     	 			output.write("\n");
-         	     	 			output.write(prereq+" ");
-         	     	 			output.write("\n");
-         	     	 			
-         	     	 			     	     	 			
-         	     	 			//System.out.println("Data Appended Successfully");	
-         	     	 			output.close(); 
-         	     	 			} catch (IOException e) {
-         	     	 			JOptionPane.showMessageDialog(null, "File Append Error");		
-         	     	 			} 
-         						
-         					}else {
-         						break;
-         					}      					
-
-     						
-     						
-     					}     					
-     					
-     			
-     	    	 case 'q': break; 
-     	    	 default :  System.out.print("\n\tInvald Input\n");
-     	    	 }
-     	    	 
-     	     }//End while       	
-
-             break;
-
-         // Case 2
-         case 2:
-        	 
-        	Scanner d = new Scanner(System.in);
-      		Scanner d1 = new Scanner(System.in);
-      		String CHOICE2 = " ";
-      		Scanner INPUT2 = new Scanner (System.in);	
-      	 
-      	 
-      		          
-               // Entering course record
-        	while(CHOICE2.charAt(0) != 'q')
-      	     {
-      	    	 System.out.print("\n\n");	
-      	    	 System.out.print("\n-----------------------------");	
-      	    	 System.out.print("\n|  (E)nter Program Code      |");
-      	    	 System.out.print("\n|  (Q)uit                    |");
-      	    	 System.out.print("\n-----------------------------\n");
-      	     	 System.out.print("Please Enter your Choice: \n");
-      	    	 
-      	    	 CHOICE2 = INPUT2.nextLine();
-      	    	 CHOICE2 = CHOICE2.toLowerCase(); 
-      	    	 
-      	    	 switch(CHOICE2.charAt(0))
-      	    	 {
-      	    	 case 'e':  	    		 
-      	    		 	      	    		 	
-      	    		    System.out.print("Staff Record File Access");
-      	    		    System.out.print("\n\n");
-      	    		    
-      	    		    System.out.println("Enter Program Code: ");
-     					String progcode = d1.nextLine().toLowerCase();
-     					
-     					
-      	    		 	     					
-      					if(progcode.equals("cmpcsi123")) {
-      						
-      						System.out.println("\nCOMPUTER SCIENCE COURSES\n "+progcode);
-         					
-      						
-      						      						
-      						try {
+		// Calling add() record method to add static data/(Hard CodedData) to linked List
+		// hr.add(record);
+		
+		Scanner input = new Scanner(System.in); // Creating Scanner Object to read input
+		
+		int option = 0; // Creating option integer variable
+		
+		do 
+		{
+			System.out.println("------------- P R O G R A M E  M O D I F I C A T I O N -------------");
+			System.out.println("|  1: Add Courses                                                  |");
+			System.out.println("|  2: Delete Course                                                |");
+			System.out.println("|  3: Update Course                                                |");
+			System.out.println("|  4: Display Course                                               |");
+			System.out.println("|  9: Back                                                         |");
+			System.out.println("--------------------------------------------------------------------\n");
+			System.out.print("Please Enter your Choice: ");
+				
+			option = input.nextInt();
+	
+	        switch (option) 
+	        {
+	        	//Add Course
+	        	case 1:
+		        	Scanner s= new Scanner(System.in);
+		     		Scanner s1= new Scanner(System.in);
+		     		String CHOICE1= "a";
+		     		Scanner INPUT1 = new Scanner (System.in);	     		
+			     	do
+		     	    {
+		     	    	switch(CHOICE1.charAt(0))
+		     	    	{
+		     	    		case 'a':
+		     	    			String choice = CHOICE1;
+		     	    		 	System.out.println("\n\nCHOICE VALUE: "+choice);
+		     	    		    
+		     	    		    System.out.println("Enter Program Code: ");
+		    					String progcode = s1.nextLine().toLowerCase();
+		    					
+		    					System.out.println("\nCURRENT PROGCODE:"+progcode);
+		    					 					
+		     					if(progcode.equals("cmpcsi123")) 
+		     					{
+		     						System.out.println("Enter Course Code: ");
+		         					String code = s1.nextLine();
+		         					System.out.println(code);
+		         											
+		         					System.out.println("Enter Course Name: ");
+		         					String name = s1.nextLine();
+		         					
+		         					System.out.println("Enter Course Description: ");
+		         					String desc = s1.nextLine();
+		         					
+		         					System.out.println("Enter Course Credits: ");
+		         					int credits = s.nextInt();
+		         									
+		         					System.out.println("Enter Pre-Requisites: ");
+		         					String prereq = s1.nextLine();
+		         					System.out.println(code);
+		         					
+		         					//Course course = new Course(code,name,desc,credits,prereq);
+		         					
+		         					ProgrammeRecordManagement pr = new ProgrammeRecordManagement();
+		         					
+		         					boolean result = pr.add(record, code);
+		         					
+		         					System.out.println("RETURN TO CASE 1");
+		         					
+		         					if(result) 
+		         					{
+		         	     	 			try 
+		         	     	 			{
+			         	     	 			FileWriter output = new FileWriter ("compsci.txt",true);
+			         	     	 			output.write(code+" ");
+			         	     	 			output.write("\n");
+			         	     	 			output.write(name+" ");
+			         	     	 			output.write("\n");
+			         	     	 			output.write(desc+" ");
+			         	     	 			output.write("\n");
+			         	     	 			output.write(credits+" ");
+			         	     	 			output.write("\n");
+			         	     	 			output.write(prereq+" ");
+			         	     	 			output.write("\n");
+			         	     	 			output.close(); 
+		         	     	 			} 
+		         	     	 			catch (IOException e) 
+		         	     	 			{
+		         	     	 				JOptionPane.showMessageDialog(null, "File Append Error");		
+		         	     	 			} 	    	
+		         					}
+		         					else 
+		         					{
+		         						break;
+		         					}      						     						
+		     					}     					     					
+		     			
+		     	    	 case 'b': 
+		     	    		 break;
+		     	    		 
+		     	    	 default:  
+		     	    		 System.out.print("\nInvald Input\n");
+		     	    	 }
+		     	    	
+		     	    	System.out.print("\n-------------------------------------------------------------------");	
+		   		    	System.out.print("\n|    (A)dd Another                                                |");
+		   		    	System.out.print("\n|    (B)ack                                                       |");
+		   		    	System.out.print("\n-------------------------------------------------------------------\n");
+		   		     	System.out.print("Please Enter your Choice: ");
+		     	    	 
+		     	    	CHOICE1 = INPUT1.nextLine().toLowerCase(); 
+		     	     }while(CHOICE1.charAt(0) != 'b'); 
+			     	 System.out.print("\n\n\n");	
+			     	 break;
+	
+		         // Case 2
+		         case 2:
+		        	 Scanner d1 = new Scanner(System.in);
+		        	 String CHOICE2 = "";
+		        	 Scanner INPUT2 = new Scanner (System.in);
+		        	 
+		        	 // Entering course record
+		        	 while(CHOICE2.charAt(0) != 'q')
+		        	 {
+	      	    	 System.out.print("\n\n");	
+	      	    	 System.out.print("\n-----------------------------");	
+	      	    	 System.out.print("\n|  (E)nter Program Code      |");
+	      	    	 System.out.print("\n|  (Q)uit                    |");
+	      	    	 System.out.print("\n-----------------------------\n");
+	      	     	 System.out.print("Please Enter your Choice: \n");
+	      	    	 
+	      	    	 CHOICE2 = INPUT2.nextLine();
+	      	    	 CHOICE2 = CHOICE2.toLowerCase(); 
+	      	    	 
+	      	    	 switch(CHOICE2.charAt(0))
+	      	    	 {
+	      	    	 	case 'e':  	    		       	    		 	
+	      	    		    System.out.print("Staff Record File Access");
+	      	    		    System.out.print("\n\n");
+	      	    		    System.out.println("Enter Program Code: ");
+	     					String progcode = d1.nextLine().toLowerCase();
+	     					     					
+	      					if(progcode.equals("cmpcsi123")) 
+	      					{
+	      						System.out.println("\nCOMPUTER SCIENCE COURSES\n "+progcode);
+	         					      						
+	      						try 
+	      						{
+	      							System.out.println("Enter Course Code To Delete: ");
+	      							String code = d1.nextLine().toUpperCase();
+	              					System.out.println(code);	              		
+	              					
+	      							File inputFile = new File("C:\\Users\\aaliy\\OneDrive - The University of Technology,Jamaica\\Year 2 - Semester 1\\Object Oriented Programming\\Java\\Home & Away\\compsci.txt");
+	      							File tempFile = new File("myTempFile.txt");
+	      							    							
+	      							FileReader fr=new FileReader("compsci.txt");  
+	      							
+	      							System.out.println("\nINPUT FILE: "+inputFile);
+	
+	      							BufferedReader reader = new BufferedReader(fr);
+	      							BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+	      							
+	      							String line;
+	      							
+	      							while((line = reader.readLine()) != null) 
+	      							{
+	      								System.out.println("CURRENT LINE VALUE: "+line);								
+	      							  
+	      								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) 
+	      								{
+	      									String oldcode = "";
+	      									line = oldcode;
+	      									System.out.println("CODECHECK "+oldcode);
+	      									System.out.println("OLD CODE: "+oldcode);
+	      									writer.write(line);
+	      									writer.write("\n");
+	      									
+	      									String oldname = "";
+	      									String namecheck = reader.readLine();
+	      									System.out.println("NMCHECK "+namecheck);
+	      									System.out.println("OLDNAME : "+oldname);
+	      									writer.write(oldname);
+	      									writer.write("\n");
+	      									
+	      									String olddesc ="";
+	      									String desccheck = reader.readLine();
+	      									System.out.println("DESCHECK "+desccheck);
+	      									System.out.println("OLD DESC : "+olddesc);
+	      									writer.write(olddesc);
+	      									writer.write("\n");
+	      									
+	      									String oldcredits = "";
+	      									String credcheck = reader.readLine();
+	      									System.out.println("CREDCHECK "+credcheck);
+	      									System.out.println("OLD CREDITS: "+oldcredits);
+	      									writer.write(oldcredits);
+	      									writer.write("\n");
+	      									
+	      									String oldpre = "";
+	      									String prereqcheck = reader.readLine();
+	      									System.out.println("PRECHECK "+prereqcheck);
+	      									System.out.println("OLD PREREQ : "+oldpre);
+	      									writer.write(oldpre); 
+	      									writer.write("\n");	
+	      								}
+	      								else 
+	      								{ 	
+	      									writer.write(line);
+	      									writer.write("\n");				
+	      								}//End if else   
+	      							}//End inner while   							
+	      							fr.close();
+	      							reader.close();
+	      							writer.flush();
+	      							writer.close(); 
       							
-      							System.out.println("Enter Course Code To Delete: ");
-      							String code = d1.nextLine().toUpperCase();
-              					System.out.println(code);
-              					
-              					
-              					
-      							File inputFile = new File("C:\\Users\\aaliy\\OneDrive - The University of Technology,Jamaica\\Year 2 - Semester 1\\Object Oriented Programming\\Java\\Home & Away\\compsci.txt");
-      							File tempFile = new File("myTempFile.txt");
-      							 
-      							
-      							FileReader fr=new FileReader("compsci.txt");  
-      							
-      							System.out.println("\nINPUT FILE: "+inputFile);
+	      						//Deleting old file and replacing with updated version
+	      							inputFile.delete();
+	      							File dump = new File("C:\\Users\\aaliy\\OneDrive - The University of Technology,Jamaica\\Year 2 - Semester 1\\Object Oriented Programming\\Java\\Home & Away\\compsci.txt");
+	      							tempFile.renameTo(dump);
+	      							
+	      						}
+	      						catch(Exception e) 
+	      						{
+	      							System.err.println("An unexpected error has occurred.");
+	      						}	
+	      					}//End if 
+	      					
+	      					break;
 
-      							BufferedReader reader = new BufferedReader(fr);
-      							BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-      							
-      							String line;
-      							
-      							
-      							while( (line = reader.readLine() ) != null) {
-      								
-      								System.out.println("CURRENT LINE VALUE: "+line);								
-      							  
-      								if(line.contains(code.toLowerCase())||line.contains(code.toUpperCase())) {
-      									
-      									String oldcode = "";
-      									line = oldcode;
-      									System.out.println("CODECHECK "+oldcode);
-      									System.out.println("OLD CODE: "+oldcode);
-      									writer.write(line);
-      									writer.write("\n");
-      									
-      									String oldname = "";
-      									String namecheck = reader.readLine();
-      									System.out.println("NMCHECK "+namecheck);
-      									System.out.println("OLDNAME : "+oldname);
-      									writer.write(oldname);
-      									writer.write("\n");
-      									
-      									String olddesc ="";
-      									String desccheck = reader.readLine();
-      									System.out.println("DESCHECK "+desccheck);
-      									System.out.println("OLD DESC : "+olddesc);
-      									writer.write(olddesc);
-      									writer.write("\n");
-      									
-      									String oldcredits = "";
-      									String credcheck = reader.readLine();
-      									System.out.println("CREDCHECK "+credcheck);
-      									System.out.println("OLD CREDITS: "+oldcredits);
-      									writer.write(oldcredits);
-      									writer.write("\n");
-      									
-      									String oldpre = "";
-      									String prereqcheck = reader.readLine();
-      									System.out.println("PRECHECK "+prereqcheck);
-      									System.out.println("OLD PREREQ : "+oldpre);
-      									writer.write(oldpre); 
-      									writer.write("\n");	
-      								}
-      								else 
-      								{ 									
-      									
-      									writer.write(line);
-      									writer.write("\n");				
-      								}//End if else
-      							   
-      							   
-      							}//End inner while   							
-      							
-      							
-      							fr.close();
-      							reader.close();
-      							writer.flush();
-      							writer.close(); 
-      							
-
-      							
-      						//Deleting old file and replacing with updated version
-      							inputFile.delete();
-      							File dump = new File("C:\\Users\\aaliy\\OneDrive - The University of Technology,Jamaica\\Year 2 - Semester 1\\Object Oriented Programming\\Java\\Home & Away\\compsci.txt");
-      							tempFile.renameTo(dump);
-      						
-      							
-      							
-      					      							
-      						}catch(Exception e) {
-      							System.err.println("An unexpected error has occurred.");
-      						}
-      						
-      						
-      						
-      					}//End if 
-      					
-      					break;
-      					
-      			
-      	    	 case 'q': break; 
-      	    	 default :  System.out.print("\n\tInvald Input\n");
-      	    	 }
-      	    	 
-      	     }//End while       	
-	      
-          
-	      		
-             break;//End case 2
-             
-             
-
-         // Case 3
-         case 3:
-
-            
-
-             break;//End case 3
-
-        
-         // Case 5
-         case 4:
-            
-             break;//End case 4
-
-         // Case 6
-         case 9:
-
-            break;//End case 9
-
-         // Case 7: Default case
-         // If none above case executes
-         default:
-
-             // Print statement
-             System.out.println("\nInvalid input\n");
-             break;
-         }
+	      	    	 case 'q':
+	      	    		 break; 
+	      	    		 
+	      	    	 default:  
+	      	    		 System.out.print("\n\tInvald Input\n");
+	      	    	 }
+	      	    	 
+	      	     }//End while       	
+	             break;//End case 2	             
+	             	
+	         // Case 3
+	         case 3:
+	             break;//End case 3
+	
+	         // Case 5
+	         case 4:
+	            
+	             break;//End case 4
+	
+	         // Case 6
+	         case 9:
+	
+	            break;//End case 9
+	
+	         // Case 7: Default case
+	         // If none above case executes
+	         default:
+	
+	             // Print statement
+	             System.out.println("\nInvalid input\n");
+	             break;
+	         }
      }
 
      // Checking condition
@@ -750,7 +679,6 @@ public class Staff extends Administrator
      input.close();
  }
 
-	
 	// METHOD TO GENERATE STUDENT LIST
 	public void generateList()
 	{			
@@ -777,10 +705,9 @@ public class Staff extends Administrator
 			s.close();
 			s1.close();
 		}
-		catch(FileNotFoundException e)
+		catch(FileNotFoundException fnfe)
 		{
 			System.err.println("Error: Student List cannot be found");
-			e.printStackTrace();
 		}	
 	}
 	

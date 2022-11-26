@@ -3,11 +3,8 @@
 
 package records;
 
-import java.util.InputMismatchException;
 //Importing scanner package to receive input from the user
 import java.util.Scanner;
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -16,7 +13,7 @@ public class Driver
 	public static void main(String[] args) 
 	{
 		System.out.println("*******************************************************************\n");		
-		System.out.println("         T H E   H O M E   &    A W A Y   I N S T I T U T E        \n");		
+		System.out.println("         T H E   H O M E   &   A W A Y   I N S T I T U T E         \n");		
 		System.out.println("*******************************************************************\n"); 		
 		
 		String username, password;
@@ -26,28 +23,20 @@ public class Driver
 		//Creating objects of the Scanner class
 		Scanner s = new Scanner(System.in);
 		Scanner s1 = new Scanner(System.in);
-		Scanner input = new Scanner (System.in);
+		Scanner input = new Scanner(System.in);
 		
 		Administrator adm = new Administrator(); //creating object of Administrator class
 		Staff stf = new Staff(); //creating object of Staff class
 		Student stu = new Student(); //creating object of Student class					
-		  
-		
+		  		
 		//System Login
-		do{
+		do
+		{
 			System.out.println("********************** S Y S T E M  L O G I N *********************\n");	
-			System.out.println("1. Admininstrator\n2. Staff Member\n3. Student\n0. Quit");
+			System.out.println("1: Admininstrator\n2: Staff Member\n3: Student\n0: Quit");
 			System.out.print("Enter the number corresponding with the type of user you are: ");
-			try 
-			{
-				type = s1.nextInt();
-				break;
-			}
-			catch(InputMismatchException | NumberFormatException e)
-			{
-				System.out.print("\nInvalid Input\n\n\n");
-				s1.next(); //parses the wrong input and clears the scanner for new input		        
-			}
+			type = s1.nextInt();
+			
 			switch(type)
 			{
 				//Administrator
@@ -76,6 +65,7 @@ public class Driver
 	    			adm.newStaff();	//Calling newStaff method 
 	    			
 	    			break;
+	    			
 	            //Staff Member
 				case 2:
 					try 
@@ -126,11 +116,13 @@ public class Driver
 						System.out.println("------------------------ S T A F F  M E N U ------------------------");
 						System.out.println("|  (R)egister Student                                              |");
 						System.out.println("|  (C)reate Programme                                              |");
+						System.out.println("|  (D)isplay Programmes                                            |");
 						System.out.println("|  (M)odify Programme Details                                      |");
 						System.out.println("|  (G)enerate Student List                                         |");
 						System.out.println("|  (Q)uit                                                          |");
 						System.out.println("--------------------------------------------------------------------\n");
-						System.out.print("Please Enter your Choice: ");								    	 				
+						System.out.print("Please Enter your Choice: ");	
+						choice = input.nextLine().toLowerCase(); //converts user input to lower case
 								    	 
 						switch(choice.charAt(0))
 						{
@@ -141,6 +133,10 @@ public class Driver
 							//Create Programme
 							case 'c':
 								stf.createProgramme();
+								break;
+							//Display Programmes
+							case 'd':
+								stf.displayProgrammes();
 								break;
 							//Modify Programme Details	    		
 							case 'm':
@@ -156,11 +152,12 @@ public class Driver
 								break;
 							//Other	    	 
 							default:
-								System.out.print("\nInvald Input\n\n\n");	
+								System.out.print("\nInvalid Input\n\n\n");	
 								break;
 						}								    	 
 					}while (choice.charAt(0)!='q');																	
 					break;
+					
 				//Student					
 				case 3:
 					try 
@@ -241,25 +238,26 @@ public class Driver
 								break;
 							//Other	    	 
 							default:
-								System.out.print("\nInvald Input\n\n\n");	
+								System.out.print("\nInvalid Input\n\n\n");	
 								break;
 						}								    	 
 					}while (choice.charAt(0)!='q');																	
 					break;
+					
 				//Quit
 				case 0:
 					break;
+					
 				//Other	
 				default:  
 					System.out.println("\nInvalid Input\n");					
 					break;
-			} 	
-		}while(true);
-		
-		//closing scanners to prevent resource leaks
-		s.close();
-		s1.close();
-		input.close();
+			}
+			//closing scanner objects to prevent resource leaks
+			s.close();
+			s1.close();
+			input.close();	
+		}while(true);	
 		
 	}//End main
 }//End class
